@@ -1,26 +1,96 @@
 ﻿@page "/login"
-<div class="card">
+
+<div class="login-container">
+    <div class="logo-container">
+        <img src="https://img.freepik.com/premium-vector/burger-vector-illustration-burger-logo-design_921448-1011.jpg" alt="Burger Logo" class="burger-logo" />
+    </div>
+
     @if (!string.IsNullOrWhiteSpace(StatusMessage))
     {
         <div class="alert alert-@Status">
-            <i class="fa fa-info-circle"></i>&nbsp;
             @StatusMessage
         </div>
     }
-    <table>
-        <tr>
-            <td><label>Username:</label></td>
-            <td><input type="text" @bind="Model.Username" /></td>
-        </tr>
-        <tr>
-            <td><label>Password:</label></td>
-            <td><input type="password" @bind="Model.Password" /></td>
-        </tr>
-    </table>
-    <button @onclick="LoginUser ">
-        <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
-    </button>
-    <div>
-        <p>Don't have an account? <a href="/register">Register here</a>.</p>
+
+    <h2>Login</h2>
+
+    <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" @bind="Model.Username" placeholder="Enter your username" />
     </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" @bind="Model.Password" placeholder="Enter your password" />
+    </div>
+
+    <button @onclick="LoginUser " class="login-button">
+        Log In
+    </button>
 </div>
+
+<style>
+    .burger-logo {
+        width: 200px; /* Increased width */
+        height: 120px; /* Increased height */
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 12px;
+        background-color: #FF9900;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .login-button:hover {
+            background-color: #FFB300;
+        }
+
+    .alert {
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .alert-success {
+        background-color: #DFF2BF;
+        color: #4F8A10;
+    }
+
+    .alert-error {
+        background-color: #FFBABA;
+        color: #D8000C;
+    }
+</style>
