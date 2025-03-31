@@ -1,5 +1,7 @@
 ﻿@page "/register"
+
 <h3>Register</h3>
+
 @if (!string.IsNullOrWhiteSpace(StatusMessage))
 {
     <div class="alert alert-@Status">
@@ -7,32 +9,152 @@
         @StatusMessage
     </div>
 }
-<table>
+
+<table class="form-table">
     <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
+        <td><label for="username">Username:</label></td>
+        <td><input type="text" id="username" @bind="Model.Username" class="form-input" /></td>
     </tr>
     <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
+        <td><label for="password">Password:</label></td>
+        <td><input type="password" id="password" @bind="Model.Password" class="form-input" /></td>
     </tr>
     <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
+        <td><label for="firstName">First Name:</label></td>
+        <td><input type="text" id="firstName" @bind="Model.FirstName" class="form-input" /></td>
     </tr>
     <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
+        <td><label for="lastName">Last Name:</label></td>
+        <td><input type="text" id="lastName" @bind="Model.LastName" class="form-input" /></td>
     </tr>
     <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
+        <td><label for="mobile">Mobile:</label></td>
+        <td><input type="text" id="mobile" @bind="Model.MobileNumber" class="form-input" /></td>
     </tr>
     <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
+        <td><label for="address">Address:</label></td>
+        <td><textarea id="address" @bind="Model.Address" class="form-input"></textarea></td>
     </tr>
 </table>
+
+
+<div class="button-container">
+    <button @onclick="RegisterUser" class="btn-submit">
+        Save
+    </button>
+</div>
+
+<style>
+    /* Overall body and font settings */
+    body {
+        background: #f9f9f9; /* Light gray background */
+        color: #333; /* Dark gray text */
+        font-family: 'Arial', 'Helvetica', sans-serif; /* System fonts */
+        padding: 40px;
+        box-sizing: border-box;
+        height: 100vh;
+    }
+
+    h3 {
+        color: #4a4a4a; /* Dark gray color for the header */
+        font-size: 32px;
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    /* Status message alert */
+    .alert {
+        background-color: #ffcc00; /* Gold for status alerts */
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .alert-info {
+        background-color: #f8f8f8; /* Soft gray for info alerts */
+        color: #333;
+    }
+
+    /* Table styling */
+    .form-table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+    }
+
+        .form-table td {
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+        .form-table label {
+            font-weight: 600;
+            font-size: 16px;
+            color: #555;
+        }
+
+    /* Input fields styling */
+    .form-input {
+        width: 100%;
+        padding: 14px;
+        border: 2px solid #ddd; /* Light gray border */
+        border-radius: 10px;
+        background-color: #ffffff; /* White background */
+        font-size: 16px;
+        color: #555;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        transition: all 0.3s ease;
+    }
+
+        .form-input:focus {
+            border-color: #ffcc00; /* Gold focus border */
+            background-color: #fff9e6; /* Soft yellow background */
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
+        }
+
+    /* Button container to center the button */
+    .button-container {
+        text-align: center; /* Center the button */
+        margin-top: 30px;
+    }
+
+    /* Button styling */
+    .btn-submit {
+        background-color: #FF9900; 
+        color: white;
+        padding: 15px 35px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-submit:hover {
+            background-color: #FFBB33; 
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-submit:active {
+            background-color: #3e8e41; /* Even darker green when clicked */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+        }
+
+    /* Hover and focus effects for inputs */
+    .form-input:hover {
+        border-color: #ffcc00; /* Gold border on hover */
+    }
+</style>
+=======
 <button @onclick="RegisterUser ">
     Save
 </button>
@@ -40,3 +162,4 @@
 <div>
     <p>Already have an account? <a href="/login">Log in here</a>.</p>
 </div>
+
