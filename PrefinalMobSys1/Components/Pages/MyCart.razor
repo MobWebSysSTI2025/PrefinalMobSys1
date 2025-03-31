@@ -1,6 +1,110 @@
 ﻿@page "/mycart"
-<h3>MyCart</h3>
 
-@code {
+@code { }
 
-}
+<div class="cart-container">
+    <h2>My Cart</h2><div class="cart-item">
+        <img src="/imgs/burger/hamborgir.jpg" alt="Hamburger" class="item-image">
+        <div class="item-details">
+            <h3>Double Decker Hamburger</h3>
+            <p>sarap</p>
+            <p class="item-quantity">- 1 +</p>
+        </div>
+        <p class="item-price">P250</p>
+        <button class="delete-btn">🗑</button>
+    </div>
+
+    <div class="cart-item">
+        <img src="/imgs/burger/chikinburger.png" alt="Chicken Burger" class="item-image">
+        <div class="item-details">
+            <h3>Chicken Burger</h3>
+            <p>chikin</p>
+            <p class="item-quantity">- 1 +</p>
+        </div>
+        <p class="item-price">P199</p>
+        <button class="delete-btn">🗑</button>
+    </div>
+
+    <div class="cart-item">
+        <img src="/imgs/pizzas/fg.jpg" alt="Garlic Pizza" class="item-image">
+        <div class="item-details">
+            <h3>Garlic Pizza</h3>
+            <p>aa</p>
+            <p class="item-quantity">- 1 +</p>
+        </div>
+        <p class="item-price">P799</p>
+        <button class="delete-btn">🗑</button>
+    </div>
+
+    <div class="cart-summary">
+        <p>Selected item (3): <strong>P1248</strong></p>
+        <p>Delivery Handling Fee: <strong>P50</strong></p>
+        <p><strong>Subtotal: P1298</strong></p>
+    </div>
+
+    <button class="checkout-btn">Check out</button>
+
+</div>
+<style>
+    .cart-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        width: 350px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .item-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .item-details {
+        flex: 1;
+        text-align: left;
+    }
+
+    .item-quantity {
+        color: #555;
+    }
+
+    .item-price {
+        font-weight: bold;
+    }
+
+    .delete-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .cart-summary {
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .checkout-btn {
+        width: 100%;
+        background: #ff8c00;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+</style>
