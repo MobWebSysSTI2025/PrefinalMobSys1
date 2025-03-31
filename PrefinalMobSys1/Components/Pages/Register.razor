@@ -1,4 +1,136 @@
 ﻿@page "/register"
+
+<style>
+
+    .wrapper {
+        width: 380px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+        margin: 0px auto;
+    }
+
+        .wrapper .title {
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            color: white;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #fc9c50, #f96e0a);
+        }
+
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
+        }
+
+            .wrapper form .field {
+                height: 50px;
+                width: 100%;
+                margin-top: 20px;
+                position: relative;
+            }
+
+                .wrapper form .field input  {
+                    height: 100%;
+                    width: 100%;
+                    outline: none;
+                    font-size: 17px;
+                    padding-left: 20px;
+                    border: 1px solid lightgrey;
+                    border-radius: 25px;
+                    
+                }
+
+                .wrapper form .field label {
+                    position: absolute;
+                    top: 50%;
+                    left: 20px;
+                    color: #999999;
+                    font-weight: 400;
+                    font-size: 17px;
+                    pointer-events: none;
+                    
+                    
+                }
+
+                textarea{
+                    height: 100%;
+                    width: 100%;
+                    outline: none;
+                    font-size: 17px;
+                    padding-left: 20px;
+                    border: 1px solid lightgrey;
+                    border-radius: 25px;
+                    
+                }
+
+                .buttonSave button{
+                    color: #fff;
+                    border: 1px solid #f96e0a;
+                    border-radius: 25px;
+                    padding: 10px 50px 10px 50px;
+                    margin-top: 20px;
+                    margin-right: auto;
+                    margin-left: auto;
+                    font-size: 20px;
+                    font-weight: 500;
+                    background: linear-gradient(-135deg, #fc9c50, #f96e0a);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+
+
+</style>
+@if (!string.IsNullOrWhiteSpace(StatusMessage))
+{
+    <div class="alert alert-@Status">
+        <i class="fa fa-info-circle"></i>&nbsp;
+        @StatusMessage
+    </div>
+}
+<div class="wrapper">
+    <div>
+    <h3 class="title">Register</h3>
+    </div>
+    <form>
+
+    <div class="field">
+            <label class="label">Username:</label>
+        <input type="text" @bind="Model.Username" />
+    </div>
+    <div class="field">
+        <label>Password:</label>
+        <input type="password" @bind="Model.Password" />
+    </div>
+    <div class="field">
+            <label class="label">First Name:</label>
+        <input type="text" @bind="Model.FirstName" />
+    </div>
+    <div class="field">
+            <label class="label">Last Name:</label>
+        <input type="text" @bind="Model.LastName" />
+    </div>
+    <div class="field">
+            <label class="label">Mobile:</label>
+        <input type="text" @bind="Model.MobileNumber" />
+    </div>
+    <div class="field">
+            <label class="label">Address:</label>
+            
+        <textarea @bind="Model.Address"></textarea>
+    </div>
+    <div class="buttonSave">
+        <button @onclick="RegisterUser">
+            Save
+        </button>
+    </div>
+    </form>
+</div>
+<!--
 <h3>Register</h3>
 @if (!string.IsNullOrWhiteSpace(StatusMessage))
 {
@@ -36,3 +168,4 @@
 <button @onclick="RegisterUser">
     Save
 </button>
+-->
