@@ -1,23 +1,64 @@
 ﻿@page "/login"
+
+<style>
+    .card{
+        border: none;
+    }
+    .input-group {
+        border: none;
+        margin: 25px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .input-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px 10px 10px 10px !important;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .btnlogin {
+        background-color: #ff6b01;
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 30px;
+        font-size: 18px;
+        width: 100%;
+        margin-top: 20px;
+        box-shadow: 0 5px 15px rgba(255, 107, 1, 0.3);
+        transition: 0.3s;
+    }
+
+</style>
 <div class="card">
     @if (!string.IsNullOrWhiteSpace(StatusMessage))
     {
-        <div class="alert alert-@Status">
-            <i class="fa fa-info-circle"></i>&nbsp;
-            @StatusMessage
+        <div class="alert">
+            <i class="fa fa-info-circle"></i>&nbsp; @StatusMessage
         </div>
     }
-    <table>
-        <tr>
-            <td><label>Username:</label></td>
-            <td><input type="text" @bind="Model.Username" /></td>
-        </tr>
-        <tr>
-            <td><label>Password:</label></td>
-            <td><input type="password" @bind="Model.Password" /></td>
-        </tr>
-    </table>
-    <button @onclick="LoginUser">
+    <div class="input-group">
+        <label>Username</label>
+        <input type="text" @bind="Model.Username" placeholder="Enter your username" />
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" @bind="Model.Password" placeholder="Enter your password" />
+    </div>
+
+    <button class="btnlogin" @onclick="LoginUser">
         <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
     </button>
 </div>
