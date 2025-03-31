@@ -7,17 +7,71 @@
             @StatusMessage
         </div>
     }
+    <h3 id="login">Login</h3>
     <table>
         <tr>
-            <td><label>Username:</label></td>
-            <td><input type="text" @bind="Model.Username" /></td>
+            <td><input type="text" @bind="Model.Username" placeholder="Username" /></td>
         </tr>
         <tr>
-            <td><label>Password:</label></td>
-            <td><input type="password" @bind="Model.Password" /></td>
+            <td><input type="password" @bind="Model.Password" placeholder="Password" /></td>
         </tr>
     </table>
-    <button @onclick="LoginUser">
+    <button class="btnLogin" @onclick="LoginUser">
         <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
     </button>
 </div>
+<style>
+    #login {
+        text-align: center;
+        font-weight: bold;
+        margin: 10px;
+    }
+
+    .card {
+        width: 75%;
+        background: white;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 5px 20px 50px lightgray;
+    }
+
+    input {
+        border: solid 1px black;
+        width: auto;
+        height: 20px;
+        background: white;
+        justify-content: center;
+        display: flex;
+        margin: 20px auto;
+        padding: 12px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+
+        input:hover {
+            border: solid 3px #ff6c01;
+        }
+
+        input:focus {
+            border: solid 3px #ff6c01;
+        }
+
+    .btnLogin {
+        color: white;
+        background-color: #ff6c01;
+        text-align: center;
+        margin: 20px auto;
+        padding: 16px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 16px;
+        opacity: 0.8;
+    }
+
+        .btnLogin:hover {
+            border: solid 1px white;
+            opacity: 1;
+        }
+</style>
