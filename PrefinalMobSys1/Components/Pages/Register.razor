@@ -1,38 +1,108 @@
 ﻿@page "/register"
-<h3>Register</h3>
-@if (!string.IsNullOrWhiteSpace(StatusMessage))
-{
-    <div class="alert alert-@Status">
-        <i class="fa fa-info-circle"></i>&nbsp;
-        @StatusMessage
+<style>
+    .signUp {
+        height: 30vh;
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+    }
+
+    .signUp img {
+        width: 30vh;
+        margin: 0 auto; 
+    }
+
+    .signUp h2{
+        font-size:30px;
+        font-weight:bolder;
+        display: flex;
+        align-items:start;
+        justify-content:start;
+    }
+
+    input {
+        border-right: 1px solid white;
+        border-left: 1px solid white;
+        border-top: 1px solid white;
+        border-bottom: 2px solid orange;
+        width:80vw;
+        padding:5px;
+        margin-top:20px;
+    }
+    textarea {
+        border-right: 1px solid white;
+        border-left: 1px solid white;
+        border-top: 1px solid white;
+        border-bottom:2px solid orange;
+        width: 80vw;
+        padding: 5px;
+        margin-top: 20px;
+        resize:none;
+    }
+
+    .btnRegister {
+        width:80vw;
+        height:40px;
+        background-color:orange;
+        color:black;
+        border:none;
+        text-align:center;
+        padding:10px;
+        border-radius:10px;
+    }
+    p {
+        text-align:center;
+        color:lightslategray;
+        margin-top:10px;
+    }
+
+    span{
+        color:orange;
+    }
+
+</style>
+
+<div class="container">
+    <div class="signUp">
+        <img src="imgs/deliveryiconbg.png"/>
+        <h2>Sign Up</h2>
     </div>
-}
-<table>
-    <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
-    </tr>
-    <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
-    </tr>
-    <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
-    </tr>
-    <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
-    </tr>
-    <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
-    </tr>
-    <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
-    </tr>
-</table>
-<button @onclick="RegisterUser">
-    Save
-</button>
+    <div class="form">
+        @if (!string.IsNullOrWhiteSpace(StatusMessage))
+        {
+            <div class="alert alert-@Status">
+                <i class="fa fa-info-circle"></i>&nbsp;
+                @StatusMessage
+            </div>
+        }
+        <table>
+            <tr>
+                <td><input type="text" @bind="Model.Username" placeholder="Username" /></td>
+            </tr>
+            <tr>
+                <td><input type="password" @bind="Model.Password" placeholder="Password" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" @bind="Model.FirstName" placeholder="First Name" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" @bind="Model.LastName" placeholder="Last Name"/></td>
+            </tr>
+            <tr>
+                <td><input type="text" @bind="Model.MobileNumber" placeholder="Mobile Number" /></td>
+            </tr>
+            <tr>
+                <td class="form-textarea"><textarea @bind="Model.Address" placeholder="Address"></textarea></td>
+            </tr>
+            <tr>
+                <td><p>By signing up, you're agree to our <span>Terms & Conditions</span> and <span>Privacy Policy</span></p></td>
+            </tr>
+        </table>
+        <button class="btnRegister" @onclick="RegisterUser">
+            Save
+        </button>
+        <p>Joined us before? <span>Login</span></p>
+    </div>
+</div>
+
