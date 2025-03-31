@@ -1,23 +1,86 @@
 ﻿@page "/login"
-<div class="card">
-    @if (!string.IsNullOrWhiteSpace(StatusMessage))
-    {
-        <div class="alert alert-@Status">
-            <i class="fa fa-info-circle"></i>&nbsp;
-            @StatusMessage
+
+<div class="login-container">
+    <div class="card">
+        <h2 class="title">Login</h2>
+
+        @if (!string.IsNullOrWhiteSpace(StatusMessage))
+        {
+            <div class="alert alert-@Status">
+                <i class="fa fa-info-circle"></i>&nbsp;
+                @StatusMessage
+            </div>
+        }
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" @bind="Model.Username" class="input-box" />
         </div>
-    }
-    <table>
-        <tr>
-            <td><label>Username:</label></td>
-            <td><input type="text" @bind="Model.Username" /></td>
-        </tr>
-        <tr>
-            <td><label>Password:</label></td>
-            <td><input type="password" @bind="Model.Password" /></td>
-        </tr>
-    </table>
-    <button @onclick="LoginUser">
-        <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
-    </button>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" @bind="Model.Password" class="input-box" />
+        </div>
+
+        <button @onclick="LoginUser" class="login-button">
+            <i class="fas fa-sign-in-alt"></i>&nbsp; Log In
+        </button>
+    </div>
 </div>
+
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 320px;
+        position: relative;
+    }
+
+    .title {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #FF8C00;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .input-box {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    .login-button {
+        background: #FF8C00;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+        .login-button:hover {
+            background: #e07b00;
+        }
+</style>
