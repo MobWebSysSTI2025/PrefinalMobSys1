@@ -1,38 +1,95 @@
 ﻿@page "/register"
-<h3>Register</h3>
-@if (!string.IsNullOrWhiteSpace(StatusMessage))
-{
-    <div class="alert alert-@Status">
-        <i class="fa fa-info-circle"></i>&nbsp;
-        @StatusMessage
-    </div>
-}
-<table>
-    <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
-    </tr>
-    <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
-    </tr>
-    <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
-    </tr>
-    <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
-    </tr>
-    <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
-    </tr>
-    <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
-    </tr>
-</table>
-<button @onclick="RegisterUser">
-    Save
-</button>
+@using Microsoft.AspNetCore.Components.Forms
+
+<style>
+        h3 {
+            color: #ff8c00;
+            text-align: center;
+        }
+
+        .alert {
+            background-color: #ffcc00;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ff8c00;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #ff8c00;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+
+            button:hover {
+                background-color: #e07b00;
+            }
+    </style>
+
+    <h3>Register</h3>
+    @if (!string.IsNullOrWhiteSpace(StatusMessage))
+    {
+        <div class="alert alert-@Status">
+            <i class="fa fa-info-circle"></i>&nbsp;
+            @StatusMessage
+        </div>
+    }
+    <table>
+        <tr>
+            <td><label>Username:</label></td>
+            <td><input type="text" @bind="Model.Username" /></td>
+        </tr>
+        <tr>
+            <td><label>Password:</label></td>
+            <td><input type="password" @bind="Model.Password" /></td>
+        </tr>
+        <tr>
+            <td><label>First Name:</label></td>
+            <td><input type="text" @bind="Model.FirstName" /></td>
+        </tr>
+        <tr>
+            <td><label>Last Name:</label></td>
+            <td><input type="text" @bind="Model.LastName" /></td>
+        </tr>
+        <tr>
+            <td><label>Mobile:</label></td>
+            <td><input type="text" @bind="Model.MobileNumber" /></td>
+        </tr>
+        <tr>
+            <td><label>Address:</label></td>
+            <td><textarea @bind="Model.Address"></textarea></td>
+        </tr>
+    </table>
+
+    <button @onclick="RegisterUser">
+               Save
+        </button>
