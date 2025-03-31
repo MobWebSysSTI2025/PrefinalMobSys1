@@ -1,6 +1,148 @@
-﻿@page "/mycart"
-<h3>MyCart</h3>
+﻿
+@page "/mycart"
 
-@code {
+<div class="upper-container">
+    <a href="#" class="previous round">&#8249;</a>
+    <button class="button button5">
+        <span class="trashcan-symbol">Del</span>
+    </button>
+    <h1>MyCart</h1>
+</div>
 
-}
+<div class="whole-container">
+    <div class="container container-one">
+        <img src="/imgs/pizzas/pepperoniPizza.png" alt="Pepperoni Pizza" class="pepperoni-pizza">
+        <span>Pepperoni Pizza - P500</span>
+    </div>
+
+    <div class="container container-two">Container 2</div>
+    <div class="container container-three">Container 3</div>
+
+    <button class="button check-out">Check out</button>
+</div>
+
+
+<style>
+    .whole-container {
+        background-color: #f0f0f0; 
+        padding: 10px;
+        width: 50%;
+        
+    }
+
+    .upper-container {
+        color: white;
+        padding: 10px;
+    }
+
+    /* Heading Styles */
+    h1 {
+        text-align: center;
+        color: black;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Back Button Styles */
+    a {
+        text-decoration: none;
+        display: inline-block;
+        background-color: #ff6c01;
+        color: white;
+        width: 50px;
+        height: 50px; 
+        border-radius: 50%; 
+        font-size: 18px;
+        text-align: center;
+        line-height: 50px; 
+    }
+
+        a:hover {
+            background-color: #ff8d3b;
+            color: white;
+        }
+
+    .previous {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        left: 20px;
+    }
+
+    .button {
+        background-color: #ff6c01;
+        border: none;
+        color: white;
+        width: 60px; 
+        height: 60px;
+        text-align: center; 
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+
+    .button5 {
+        border-radius: 50%;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .trashcan-symbol {
+        font-size: 18px;
+        color: white;
+        margin-left: 5px;
+    }
+
+
+    .container {
+        width: 300px;
+        height: 150px;
+        margin: 10px auto;
+        display: block;
+        text-align: center;
+        line-height: 150px;
+        font-size: 20px;
+        color: white; 
+        border-radius: 10px; /* Add rounded corners */
+    }
+
+    .container-one {
+        background-color: white;
+        width: 500px;
+        height: 150px;
+        position: relative; 
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+        color: black;
+    }
+
+    .pepperoni-pizza {
+        width: 100px;
+        height: auto;
+        margin-right: 15px; 
+        border-radius: 10px;
+    }
+
+    .container-two {
+        background-color: white;
+        width: 500px;
+    }
+
+    .container-three {
+        background-color: white;
+        width: 500px;
+    }
+
+    .check-out {
+        background-color: #ff6c01;
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        width: 500px;
+        padding: 20px; 
+        align-content: center;
+    }
+   
+</style>
