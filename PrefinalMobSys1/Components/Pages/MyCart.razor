@@ -1,6 +1,124 @@
 ﻿@page "/mycart"
-<h3>MyCart</h3>
 
-@code {
+<style>
+    .cart-item-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 
-}
+    .cart-item {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    .cart-item-img img {
+        width: 100px;
+        height: auto;
+        margin-right: 15px;
+    }
+
+    .cart-item-details {
+        flex-grow: 1;
+    }
+
+    .cart-item-actions {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .btn-delete {
+        background-color: #F6AC00;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .cart-summary {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .summary-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .btn-checkout {
+        background-color: #F6AC00;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .highlight-price {
+        color: #F6AC00;
+        font-weight: bold;
+    }
+</style>
+
+<SectionContent SectionName="cart-header">
+    <h1>My Cart</h1>
+</SectionContent>
+
+<section>
+    <h2>My Cart</h2>
+    <div class="cart-item-list">
+        <div class="cart-item">
+            <div class="cart-item-img">
+                <img src="/imgs/icecream/matcha-ice-cream.jpg" />
+            </div>
+            <div class="cart-item-details">
+                <h3>Matcha Ice Cream</h3>
+                <h4 class="highlight-price">P69.00</h4>
+                <input type="number" value="1" min="1" class="form-quantity" />
+                <div class="cart-item-actions">
+                    <button class="btn btn-delete">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+
+    <div class="cart-summary">
+        <div class="summary-item">
+            <span>Selected Items:</span>
+            <span class="highlight-price">1</span>
+        </div>
+        <div class="summary-item">
+            <span>Delivery & Handling:</span>
+            <span class="highlight-price">P0.00</span>
+        </div>
+        <div class="summary-item">
+            <span>Subtotal:</span>
+            <span class="highlight-price">P69.00</span>
+        </div>
+        <div class="summary-actions">
+            <button class="btn btn-checkout">
+                <i class="fa fa-credit-card"></i> Checkout
+            </button>
+        </div>
+    </div>
+</section>

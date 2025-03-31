@@ -101,6 +101,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\imgs\ads\" />
+      <Folder Include="wwwroot\imgs\icecream\" />
     </ItemGroup>
 
 </Project>
