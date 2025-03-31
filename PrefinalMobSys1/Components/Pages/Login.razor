@@ -1,5 +1,57 @@
 ﻿@page "/login"
+
+<style>
+
+    .card{
+        width: 420px;
+        border:none;
+        border-radius: 10px;
+        padding: 30px 40px;
+        text-align: center;
+        margin: 5px auto;
+        backdrop-filter: blur(20px);
+    }
+
+    .headDesign {
+        margin:0;
+        height:300px;
+        background: url(imgs/deliveryiconbg.png) no-repeat;
+    }
+
+    h2{
+    font-weight:900;
+    }
+    .card input{
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+    .card .in{
+        text-align: center;
+        margin: 50px auto;
+        
+    }
+
+    .btn0 {
+        height: 45px;
+        width: 96%;
+        margin: 5px 0;
+        background-color:orange;
+        outline: none;
+        border: 2px solid black;
+        border-radius: 10px;
+        display: block;
+    }
+
+    a{
+        text-decoration: none;
+        color:orange;
+    }
+</style>
+
 <div class="card">
+    <div class="headDesign">
+    </div>
     @if (!string.IsNullOrWhiteSpace(StatusMessage))
     {
         <div class="alert alert-@Status">
@@ -8,16 +60,31 @@
         </div>
     }
     <table>
+
         <tr>
-            <td><label>Username:</label></td>
-            <td><input type="text" @bind="Model.Username" /></td>
+            <td><p> </p></td>
+            <td><h2>Log in</h2></td>
         </tr>
+
+        <tr class="in">
+            <td><p> </p></td>
+            <td> <i class="fa fa-regular fa-user"> </i> <input type="text" @bind="Model.Username" placeholder="Username" /></td>
+        </tr>
+        <tr class="in">
+            <td><p> </p></td>
+            <td> <i class="fa fa-regular fa-lock"> </i> <input type="password" @bind="Model.Password" placeholder="Password" /></td>
+            
+        </tr>
+
         <tr>
-            <td><label>Password:</label></td>
-            <td><input type="password" @bind="Model.Password" /></td>
+            <td></td>
+            <td><a href="#"> Forgot password</a></td>
         </tr>
+
+        <tr></tr>
+        
     </table>
-    <button @onclick="LoginUser">
-        <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
-    </button>
+	<button class="btn0" @onclick="LoginUser">
+		<i class="fas fa-sign-in-alt"></i>&nbsp;Log In
+	</button>
 </div>
