@@ -1,6 +1,186 @@
 ﻿@page "/mycart"
-<h3>MyCart</h3>
+<style>
+	* {
+		box-sizing:border-box;
+	}
 
-@code {
+	.container{
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		flex-direction:column;
+	}
 
-}
+	.header {
+		width:100%;
+	}
+
+
+	.fa-trash{
+		font-size:20px;
+		float:right;
+		color:orange;
+	}
+	
+	.fa-arrow-left {
+		font-size:20px;
+		color:orange;
+	}
+
+	.header h1 {
+		text-align:center;
+	}
+
+	.image {
+		display:flex;
+		justify-content:center;
+	}
+
+	img {
+		width:150px;
+
+	}
+	
+	.items{
+		margin-bottom:20px;
+	}
+	
+	.item1 {
+		width:90vw;
+		padding:10px;
+		display:grid;
+		gap:30px;
+		grid-template-columns:1fr 1fr;
+		margin:20px 0px 0px 0px;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	}
+	
+	.items table td {
+		border:2px solid black;
+		padding: 5px; 
+		text-align: center; 
+		font-size:20px;
+	}
+		
+		.items table td.button {
+			background-color: gray; 
+			color: white; 
+		}
+
+		.items p{
+			color:gray;
+		}
+
+	.summary table{
+		width:70vw;
+		
+		/* margin:10px 0px 10px 0px; */
+		margin:0px auto;
+	}
+
+	.summary table td{
+		padding:3px;
+	}
+
+	.divider {
+		border-top:2px dashed orange;
+
+	}
+
+	.summary button {
+		width: 80vw;
+		height: 40px;
+		background: linear-gradient(to bottom right, #FF6200, #FDB777);
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		color: black;
+		border: none;
+		text-align: center;
+		padding: 10px;
+		border-radius: 10px;
+		margin:20px;
+	}
+</style>
+
+<div class="container">
+	<div class="header">
+		<div class="icons">
+			<i class="fa fa-arrow-left"></i>
+			<i class="fa fa-trash"></i>
+		</div>
+		<div class="title">
+			<h1>My Cart</h1>
+		</div>
+	</div>
+	<div class="items">
+		<div class="item1">
+			<div class="image">
+				<img src="imgs/pizzas/1.jpg" alt="Alternate Text" />
+			</div>
+			<div class="item1-details">
+				<h2>Mushrooms</h2>
+				<p>Hot beef steak with fry</p>
+				<table>
+					<tr>
+						<td class="button">+</td>
+						<td>2</td>
+						<td class="button">-</td>
+					</tr>
+				</table>
+				<p>$24.00</p>
+			</div>
+		</div>
+		<div class="item1">
+			<div class="image">
+				<img src="imgs/pizzas/1.jpg" alt="Alternate Text" />
+			</div>
+			<div class="item1-details">
+				<h2>Mushrooms</h2>
+				<p>Hot beef steak with fry</p>
+				<table>
+					<tr>
+						<td class="button">+</td>
+						<td>2</td>
+						<td class="button">-</td>
+					</tr>
+				</table>
+				<p>$24.00</p>
+			</div>
+		</div>
+		<div class="item1">
+			<div class="image">
+				<img src="imgs/pizzas/1.jpg" alt="Alternate Text" />
+			</div>
+			<div class="item1-details">
+				<h2>Mushrooms</h2>
+				<p>Hot beef steak with fry</p>
+				<table>
+					<tr>
+						<td class="button">+</td>
+						<td>2</td>
+						<td class="button">-</td>
+					</tr>
+				</table>
+				<p>$24.00</p>
+			</div>
+		</div>
+
+
+	</div>
+	<div class="summary">
+		<table>
+			<tr>
+				<td>Selected Item (3)</td>
+				<td>$78.00</td>
+			</tr>
+			<tr>
+				<td>Delivery & Handling</td>
+				<td>$10.00</td>
+			</tr>
+			<tr>
+				<td class="divider">Subtotal</td>
+				<td class="divider">$88.00</td>
+			</tr>
+		</table>
+		<button>Check Out</button>
+	</div>
+</div>
