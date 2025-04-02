@@ -1,148 +1,285 @@
-﻿
-@page "/mycart"
+﻿@page "/mycart"
+
+<!-- Include Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="upper-container">
     <a href="#" class="previous round">&#8249;</a>
+    <h1>My Cart</h1>
     <button class="button button5">
-        <span class="trashcan-symbol">Del</span>
+        <span class="trashcan-symbol"><i class="fas fa-trash-alt"></i></span>
     </button>
-    <h1>MyCart</h1>
 </div>
 
 <div class="whole-container">
     <div class="container container-one">
-        <img src="/imgs/pizzas/pepperoniPizza.png" alt="Pepperoni Pizza" class="pepperoni-pizza">
-        <span>Pepperoni Pizza - P500</span>
+        <img src="/imgs/pizzas/pepperoniPizza.png" alt="Pepperoni Pizza" class="pizza-img">
+        <div class="pizza-description-container">
+            <span class="pizza-description">Pepperoni Pizza</span>
+            <span class="pizza-description2">Zesty pepperoni and melted cheese</span>
+            <div class="quantity-selector">
+                <button class="quantity-button">-</button>
+                <input type="text" value="1" class="quantity-input" />
+                <button class="quantity-button">+</button>
+                <span class="quantity-text">₱350</span>
+            </div>
+        </div>
+        <button class="button button-square">
+            <span class="square-symbol"><i class="fas fa-trash-alt"></i></span>
+        </button>
     </div>
 
-    <div class="container container-two">Container 2</div>
-    <div class="container container-three">Container 3</div>
+    <div class="container container-one">
+        <img src="/imgs/pizzas/cheesePizza.png" alt="Cheese Pizza" class="pizza-img">
+        <div class="pizza-description-container">
+            <span class="pizza-description">Cheese Pizza</span>
+            <span class="pizza-description2">Gooey cheese on a golden crust </span>
+            <div class="quantity-selector">
+                <button class="quantity-button">-</button>
+                <input type="text" value="1" class="quantity-input" />
+                <button class="quantity-button">+</button>
+                <span class="quantity-text">₱250</span>
+            </div>
+        </div>
+        <button class="button button-square">
+            <span class="square-symbol"><i class="fas fa-trash-alt"></i></span>
+        </button>
+    </div>
 
-    <button class="button check-out">Check out</button>
+    <div class="container container-one">
+        <img src="/imgs/pizzas/spinachCheese.png" alt="Spinach Cheese Pizza" class="pizza-img">
+        <div class="pizza-description-container">
+            <span class="pizza-description">Spinach Cheese Pizza</span>
+            <span class="pizza-description2">Savory spinach and cheese</span>
+            <div class="quantity-selector">
+                <button class="quantity-button">-</button>
+                <input type="text" value="1" class="quantity-input" />
+                <button class="quantity-button">+</button>
+                <span class="quantity-text">₱375</span>
+            </div>
+        </div>
+        <button class="button button-square">
+            <span class="square-symbol"><i class="fas fa-trash-alt"></i></span>
+        </button>
+    </div>
 </div>
 
+<div class="summary-container">
+    <p>Selected item (-)      -</p>
+    <p>Delivery & handling    -</p>
+    <hr>
+    <p>Subtotal               -</p>
+</div>
+
+<button class="button check-out">Check out</button>
 
 <style>
-    .whole-container {
-        background-color: #f0f0f0; 
-        padding: 10px;
-        width: 50%;
-        
-    }
-
     .upper-container {
-        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 10px;
+        position: relative;
     }
 
-    /* Heading Styles */
+    .whole-container {
+        background-color: #f0f0f0;
+        padding: 10px;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .button5 {
+        background-color: #ff6c01; /* Yellow background */
+        color: white; /* Text color */
+        width: 40px; /* Fixed size */
+        height: 40px; /* Fixed size */
+        border-radius: 50%;
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px; /* Match the height */
+        border: none;
+        position: absolute;
+        right: 10px;
+    }
+
+        .button5:hover {
+            background-color: #ff852b; /* Darker yellow on hover */
+        }
+
+    .trashcan-symbol {
+        font-size: 18px; /* Responsive font size */
+        color: white;
+    }
+
     h1 {
         text-align: center;
         color: black;
         font-family: Arial, sans-serif;
+        flex-grow: 1;
+        margin: 20px 0; /* Add margin to create space */
+        font-size: 1.5rem; /* Responsive font size */
+        font-weight: bold;
     }
 
-    /* Back Button Styles */
-    a {
+    a.previous {
         text-decoration: none;
         display: inline-block;
-        background-color: #ff6c01;
-        color: white;
-        width: 50px;
-        height: 50px; 
-        border-radius: 50%; 
+        background-color: #ff6c01; /* Yellow background */
+        color: white; /* Text color */
+        width: 40px; /* Fixed size */
+        height: 40px; /* Fixed size */
+        border-radius: 50%;
         font-size: 18px;
         text-align: center;
-        line-height: 50px; 
+        line-height: 40px; /* Match the height */
     }
 
-        a:hover {
-            background-color: #ff8d3b;
-            color: white;
+        a.previous:hover {
+            background-color: #ff852b; /* Darker yellow on hover */
         }
 
-    .previous {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        left: 20px;
-    }
-
-    .button {
-        background-color: #ff6c01;
-        border: none;
-        color: white;
-        width: 60px; 
-        height: 60px;
-        text-align: center; 
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-    }
-
-    .button5 {
-        border-radius: 50%;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-
-    .trashcan-symbol {
-        font-size: 18px;
-        color: white;
-        margin-left: 5px;
-    }
-
-
     .container {
-        width: 300px;
-        height: 150px;
+        width: 90%;
+        height: auto;
         margin: 10px auto;
         display: block;
         text-align: center;
-        line-height: 150px;
-        font-size: 20px;
-        color: white; 
-        border-radius: 10px; /* Add rounded corners */
+        font-size: 1rem; /* Responsive font size */
+        color: white;
+        border-radius: 10px;
     }
 
     .container-one {
         background-color: white;
-        width: 500px;
-        height: 150px;
-        position: relative; 
-        display: flex; 
-        align-items: center; 
-        justify-content: flex-start; 
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         color: black;
+        padding: 10px;
+        box-sizing: border-box;
+        flex-wrap: wrap; /* Allow wrapping */
     }
 
-    .pepperoni-pizza {
-        width: 100px;
+    .pizza-img {
+        width: 20%; /* Responsive width */
         height: auto;
-        margin-right: 15px; 
+        margin-right: 15px;
         border-radius: 10px;
     }
 
-    .container-two {
-        background-color: white;
-        width: 500px;
+    .pizza-description-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
     }
 
-    .container-three {
-        background-color: white;
-        width: 500px;
+    .pizza-description {
+        font-size: 1rem; /* Responsive font size */
+        color: black;
+        font-weight: bold; /* Make text bold */
     }
+
+    .pizza-description2 {
+        font-size: 1rem; /* Responsive font size */
+        color: #9e9e9e;
+    }
+
+    .quantity-selector {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .quantity-button {
+        background-color: #ff6c01;
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .quantity-input {
+        width: 40px;
+        text-align: center;
+        margin: 0 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        height: 30px;
+    }
+
+    .quantity-text {
+        color: #ff6c01; /* ff6c01 text color */
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .summary-container {
+        font-size: 1rem; /* Responsive font size */
+        color: gray; /* Gray color for text */
+        text-align: left;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+        .summary-container p {
+            margin: 5px 0;
+        }
+
+        .summary-container hr {
+            border: 0;
+            border-top: 1px solid gray;
+        }
 
     .check-out {
         background-color: #ff6c01;
         color: white;
-        border-radius: 20px;
+        border-radius: 30px;
         text-align: center;
-        width: 500px;
-        padding: 20px; 
+        width: 100%;
+        padding: 10px; /* Minimized height */
         align-content: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+        font-size: 1rem; /* Minimized text size */
+        border: none; /* Remove the border */
     }
-   
+
+        .check-out:hover {
+            background-color: #ff8d3b; /* Hover background color */
+            color: white; /* Hover text color */
+        }
+
+    .button-square {
+        background-color: #ff6c01; /* Yellow background */
+        color: white; /* Text color */
+        width: 40px; /* Fixed size */
+        height: 40px; /* Fixed size */
+        font-size: 18px; /* Font size for symbol */
+        text-align: center;
+        line-height: 40px; /* Match the height */
+        border: none;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+        .button-square:hover {
+            background-color: #ff852b; /* Darker yellow on hover */
+        }
+
+    .square-symbol {
+        font-size: 18px; /* Responsive font size */
+        color: white;
+    }
 </style>
