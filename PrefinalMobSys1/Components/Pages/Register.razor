@@ -1,7 +1,7 @@
 ﻿@page "/register"
 <style>
     .signUp {
-        height: 30vh;
+        max-height: 30%;
         display: flex;
         flex-direction: column; 
         align-items: center; 
@@ -9,7 +9,7 @@
     }
 
     .signUp img {
-        width: 30vh;
+        max-width: 30vw;
         margin: 0 auto; 
     }
 
@@ -21,12 +21,19 @@
         justify-content:start;
     }
 
+    table, textarea {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+
     input {
         border-right: 1px solid white;
         border-left: 1px solid white;
         border-top: 1px solid white;
         border-bottom: 2px solid orange;
-        width:80vw;
+        width:300px;
         padding:5px;
         margin-top:20px;
     }
@@ -35,7 +42,7 @@
         border-left: 1px solid white;
         border-top: 1px solid white;
         border-bottom:2px solid orange;
-        width: 80vw;
+        width: 300px;
         padding: 5px;
         margin-top: 20px;
         resize:none;
@@ -44,7 +51,8 @@
     .btnRegister {
         width:80vw;
         height:40px;
-        background-color:orange;
+        background: linear-gradient(to bottom right, #FF6200, #FDB777);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         color:black;
         border:none;
         text-align:center;
