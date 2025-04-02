@@ -13,29 +13,39 @@
     }
 
     .headDesign {
-        margin:0;
+        margin: 0px 0px -50px -25px;
         height:300px;
+        width:420px;
         background: url(imgs/deliveryiconbg.png) no-repeat;
+
     }
 
     h2{
     font-weight:900;
+    margin:15px;
     }
     .card input{
         border-top: none;
         border-right: none;
         border-left: none;
+        margin: 20px 0;
+        height:20px;
     }
+
     .card .in{
+        border-top: none;
+        border-right: none;
+        border-left: none;
         text-align: center;
         margin: 50px auto;
-        
+        height: 10px;
+        width: 80%;
     }
 
     .btn0 {
         height: 45px;
-        width: 96%;
-        margin: 5px 0;
+        width: 70%;
+        margin:0px 0px 100px 50px;
         background-color:orange;
         outline: none;
         border: 2px solid black;
@@ -47,6 +57,61 @@
         text-decoration: none;
         color:orange;
     }
+
+    .new{
+        width: 420px;
+        height: 430px;
+        text-align: center;
+        margin: 50px auto;
+        padding: 30px 40px;
+    }
+
+     .rem {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 0 15px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .rem a {
+        margin: 0px 0px 10px 230px;
+        color: orange;
+        text-decoration: none;
+    }
+
+    .rem a:hover {
+        text-decoration: underline;
+    }
+
+    .Input input {
+        width: 70%;
+        height: 100%;
+        background: transparent;
+        outline: none;
+        color: black;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px solid black;
+        padding: 20px 45px 20px 20px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .Input ::placeholder {
+        color: black;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .Input i {
+        position:absolute;
+        right: -55px;
+        top: 25%;
+        font-size: 25px;
+    }
+
 </style>
 
 <div class="card">
@@ -59,7 +124,7 @@
             @StatusMessage
         </div>
     }
-    <table>
+    <table class="new">
 
         <tr>
             <td><p> </p></td>
@@ -68,23 +133,29 @@
 
         <tr class="in">
             <td><p> </p></td>
-            <td> <i class="fa fa-regular fa-user"> </i> <input type="text" @bind="Model.Username" placeholder="Username" /></td>
+            <td class="Input"> <i class="fa fa-regular fa-user"> </i> <input type="text" @bind="Model.Username" placeholder="Username" /></td>
         </tr>
         <tr class="in">
             <td><p> </p></td>
-            <td> <i class="fa fa-regular fa-lock"> </i> <input type="password" @bind="Model.Password" placeholder="Password" /></td>
+            <td class="Input"> <i class="fa fa-regular fa-lock"> </i> <input type="password" @bind="Model.Password" placeholder="Password" /></td>
             
         </tr>
 
         <tr>
             <td></td>
-            <td><a href="#"> Forgot password</a></td>
+            <td class="rem"><a href="#"> Forgot password?</a></td>
         </tr>
+         
+        <tr>
+            <td></td>
+            <td>
+                <button class="btn0" @onclick="LoginUser">
+                    <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
+                </button>
+            </td>
 
-        <tr></tr>
+        </tr>
         
     </table>
-	<button class="btn0" @onclick="LoginUser">
-		<i class="fas fa-sign-in-alt"></i>&nbsp;Log In
-	</button>
+
 </div>
