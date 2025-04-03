@@ -1,38 +1,51 @@
 ﻿@page "/register"
-<h3>Register</h3>
-@if (!string.IsNullOrWhiteSpace(StatusMessage))
-{
-    <div class="alert alert-@Status">
-        <i class="fa fa-info-circle"></i>&nbsp;
-        @StatusMessage
+
+<head>
+    <link rel="stylesheet" href="MyRegisterStyles.css">
+</head>
+
+<div class="card enhanced">
+    <h3>Register</h3>
+
+    @if (!string.IsNullOrWhiteSpace(StatusMessage))
+    {
+        <div class="alert alert-@Status">
+            <i class="fa fa-info-circle"></i>&nbsp;
+            @StatusMessage
+        </div>
+    }
+
+    <div class="form-group">
+        <label>Username:</label>
+        <input type="text" @bind="Model.Username" class="form-control" />
     </div>
-}
-<table>
-    <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
-    </tr>
-    <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
-    </tr>
-    <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
-    </tr>
-    <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
-    </tr>
-    <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
-    </tr>
-    <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
-    </tr>
-</table>
-<button @onclick="RegisterUser">
-    Save
-</button>
+
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" @bind="Model.Password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>First Name:</label>
+        <input type="text" @bind="Model.FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Last Name:</label>
+        <input type="text" @bind="Model.LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Mobile:</label>
+        <input type="text" @bind="Model.MobileNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Address:</label>
+        <textarea @bind="Model.Address" class="form-control"></textarea>
+    </div>
+
+    <button @onclick="RegisterUser" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i>&nbsp; Save
+    </button>
+</div>
