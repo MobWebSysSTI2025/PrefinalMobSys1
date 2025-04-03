@@ -1,6 +1,74 @@
 ﻿@page "/myorders"
-<h3>MyOrders</h3>
 
-@code {
+<head>
+    <title>My Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"href="MyOrdersStyles.css" />
+</head>
 
-}
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <a href="#" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>My Orders</h1>
+        </header>
+
+        <!-- Pivot Navigation -->
+        <div class="pivot-nav">
+            <button class="pivot-item active">All Orders</button>
+            <button class="pivot-item">Processing</button>
+            <button class="pivot-item">Completed</button>
+        </div>
+
+        <!-- Orders List -->
+        <div class="orders-list">
+            <div class="order-card">
+                <div class="order-header">
+                    <span class="order-id">#WIN-2023-001</span>
+                    <span class="order-status delivered"><i class="fas fa-check-circle"></i> Delivered</span>
+                </div>
+                <div class="order-body">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="order-image" alt="Pizza">
+                    <div class="order-info">
+                        <h3>Mushrooms Pizza</h3>
+                        <p>Medium · 400g · Extra cheese</p>
+                    </div>
+                    <div class="order-price">
+                        <span>₱21.00</span>
+                        <span>x2</span>
+                    </div>
+                </div>
+                <div class="order-footer">
+                    <span class="total">Total: ₱42.00</span>
+                    <button class="track-button">Track Order</button>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <span class="order-id">#WIN-2023-002</span>
+                    <span class="order-status processing"><i class="fas fa-clock"></i> Processing</span>
+                </div>
+                <div class="order-body">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="order-image" alt="Salad">
+                    <div class="order-info">
+                        <h3>Caesar Salad</h3>
+                        <p>Large · Chicken · Extra dressing</p>
+                    </div>
+                    <div class="order-price">
+                        <span>₱14.50</span>
+                        <span>x1</span>
+                    </div>
+                </div>
+                <div class="order-footer">
+                    <span class="total">Total: ₱14.50</span>
+                    <button class="track-button">Track Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
