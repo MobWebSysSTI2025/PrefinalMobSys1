@@ -1,38 +1,86 @@
 ﻿@page "/register"
-<h3>Register</h3>
-@if (!string.IsNullOrWhiteSpace(StatusMessage))
-{
-    <div class="alert alert-@Status">
-        <i class="fa fa-info-circle"></i>&nbsp;
-        @StatusMessage
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="p-4 shadow rounded-4" style="width: 100%; max-width: 420px; background-color: #fff;">
+        <h3 class="text-center mb-4 fw-bold" style="font-size: 1.8rem;">Register</h3>
+
+        @if (!string.IsNullOrWhiteSpace(StatusMessage))
+        {
+            <div class="alert alert-@Status rounded-3" style="font-size: 0.95rem;">
+                <i class="fa fa-info-circle me-2"></i>@StatusMessage
+            </div>
+        }
+
+        <div class="mb-3">
+            <label class="form-label text-muted small">Username</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control rounded-end-3 px-3 py-2" @bind="Model.Username" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-muted small">Password</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control rounded-end-3 px-3 py-2" @bind="Model.Password" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-muted small">First Name</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="fa fa-id-card"></i></span>
+                <input type="text" class="form-control rounded-end-3 px-3 py-2" @bind="Model.FirstName" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-muted small">Last Name</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="fa fa-id-card"></i></span>
+                <input type="text" class="form-control rounded-end-3 px-3 py-2" @bind="Model.LastName" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-muted small">Mobile</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="fa fa-phone"></i></span>
+                <input type="text" class="form-control rounded-end-3 px-3 py-2" @bind="Model.MobileNumber" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-muted small">Address</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light"><i class="fa fa-home"></i></span>
+                <textarea class="form-control rounded-end-3 px-3 py-2" rows="2" @bind="Model.Address"></textarea>
+            </div>
+        </div>
+
+        <button class="btn w-100 rounded-3 py-2 fw-semibold text-white" style="background-color: #ff6600;" @onclick="ValidateAndRegister">
+            <i class="fa fa-save me-2"></i>Save
+        </button>
     </div>
+</div>
+
+@code {
+    private void ValidateAndRegister()
+    {
+        if (string.IsNullOrWhiteSpace(Model.Username) ||
+            string.IsNullOrWhiteSpace(Model.Password) ||
+            string.IsNullOrWhiteSpace(Model.FirstName) ||
+            string.IsNullOrWhiteSpace(Model.LastName) ||
+            string.IsNullOrWhiteSpace(Model.MobileNumber) ||
+            string.IsNullOrWhiteSpace(Model.Address))
+        {
+            Status = "danger";
+            StatusMessage = "Please fill out all required fields.";
+        }
+        else
+        {
+            RegisterUser();
+        }
+    }
 }
-<table>
-    <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
-    </tr>
-    <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
-    </tr>
-    <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
-    </tr>
-    <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
-    </tr>
-    <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
-    </tr>
-    <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
-    </tr>
-</table>
-<button @onclick="RegisterUser">
-    Save
-</button>
