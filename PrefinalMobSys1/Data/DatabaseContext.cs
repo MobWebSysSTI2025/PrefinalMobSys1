@@ -1,4 +1,4 @@
-﻿using PrefinalMobSys1.Models;
+﻿ using PrefinalMobSys1.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -34,10 +34,12 @@ namespace PrefinalMobSys1.Data
             database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
             //Create tables
             await database.CreateTableAsync<User>();
+			//await database.CreateTableAsync<TodoItem>();
 
-        }
+		}
 
-        public async Task<List<User>> Users()
+		// Users Methods
+		public async Task<List<User>> Users()
         {
             await Init();
             return await database.Table<User>().ToListAsync();
@@ -57,5 +59,27 @@ namespace PrefinalMobSys1.Data
             await Init();
             return await database.DeleteAsync(incoming);
         }
-    }
+
+		// TodoItem Methods
+		//public async Task<List<TodoItem>> GetTodoItems()
+		//{
+		//	await Init();
+		//	return await database.Table<TodoItem>().ToListAsync();
+		//}
+
+		//public async Task<int> SaveTodoItem(TodoItem item)
+		//{
+		//	await Init();
+		//	if (item.TodoID != 0)
+		//		return await database.UpdateAsync(item);
+		//	else
+		//		return await database.InsertAsync(item);
+		//}
+
+		//public async Task<int> DeleteTodoItem(TodoItem item)
+		//{
+		//	await Init();
+		//	return await database.DeleteAsync(item);
+		//}
+	}
 }

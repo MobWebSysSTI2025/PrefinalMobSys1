@@ -36,7 +36,7 @@
     <ul>
         @foreach (var usr in Model.Users)
         {
-            <li data-id="@usr.ID" data-username="@usr.Username"  >
+            <li data-id="@usr.ID" data-username="@usr.Username" class="my-2" >
                 <div class="leftindicator">                    
                     <input id="chk_@usr.ID" class="toggleSelect" type="checkbox" name="User" value="@usr.ID" style="display:none" />
                     <i class="fa fa-user toggleDeselect"></i>

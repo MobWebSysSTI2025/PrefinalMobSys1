@@ -8,6 +8,9 @@ namespace PrefinalMobSys1.Models
 {
     public class HomeViewModel : BaseViewModel
     {
-        public string Search { get; set; }   
-    }
+        public string Search { get; set; } 
+		//public List<TodoItem> TodoList { get; set; } = new List<TodoItem>();
+		//public bool SelectMode { get; set; } = false;
+		//public TodoItem SelectedTodo { get; set; } = new TodoItem();
+	}
 }
