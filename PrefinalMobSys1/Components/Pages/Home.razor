@@ -8,42 +8,71 @@
     <input @bind="newTaskText" @bind:event="oninput" placeholder="Add a new task..." style="padding:8px; width: 60%;" />
     <input type="date" @bind="newTaskDate" style="padding:8px; margin-left: 10px;" />
     <button @onclick="AddTask" style="padding: 9px 16px; margin-left: 10px;">+</button>
+    <button @onclick="ClearAllTasks" style="padding: 9px 16px; margin-left: 10px; background-color: red; color: white;">Clear All</button>
+    <button @onclick="ToggleView" style="padding: 9px 16px; margin-left: 10px;">
+        @if (isGridView)
+        {
+            <span>List View</span>
+        }
+        else
+        {
+            <span>Grid View</span>
+        }
+    </button>
 </div>
 
-<table class="task-table" style="width: 100%; border-collapse: collapse;">
-    <thead style="background-color: var(--color-primary); color: var(--color-header-text);">
-        <tr>
-            <th style="padding: 10px; width: 60px;">Done</th>
-            <th style="text-align: left; padding: 10px;">Task</th>
-            <th style="text-align: left; padding: 10px; width: 150px;">Due Date</th>
-            <th style="width: 50px;"></th>
-        </tr>
-    </thead>
-    <tbody>
+@if (!isGridView)
+{
+    <table class="task-table" style="width: 100%; border-collapse: collapse;">
+        <thead style="background-color: var(--color-primary); color: var(--color-header-text);">
+            <tr>
+                <th style="padding: 10px; width: 60px;">Done</th>
+                <th style="text-align: left; padding: 10px;">Task</th>
+                <th style="text-align: left; padding: 10px; width: 150px;">Due Date</th>
+                <th style="width: 50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in tasks)
+            {
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                    <td style="text-align: center; padding: 8px;">
+                        <input type="checkbox" checked="@task.IsCompleted" @onchange="@(() => ToggleComplete(task))" />
+                    </td>
+                    <td style="padding: 8px;">
+                        <label class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer;">@task.Text</label>
+                    </td>
+                    <td style="padding: 8px;">
+                        @task.DueDate.ToString("yyyy-MM-dd")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="task-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
         @foreach (var task in tasks)
         {
-            <tr style="border-bottom: 1px solid var(--color-border);">
-                <td style="text-align: center; padding: 8px;">
-                    <input type="checkbox" checked="@task.IsCompleted" @onchange="@(() => ToggleComplete(task))" />
-                </td>
-                <td style="padding: 8px;">
-                    <label class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer;">@task.Text</label>
-                </td>
-                <td style="padding: 8px;">
-                    @task.DueDate.ToString("yyyy-MM-dd")
-                </td>
-                <td style="text-align: center; padding: 8px;">
-                    <button @onclick="@(() => RemoveTask(task))" title="Delete" style="background:none; border:none; color:red; cursor:pointer;">&#128465;</button>
-                </td>
-            </tr>
+            <div class="task-card" style="border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; background: #fff; box-shadow: 0 2px 4px #0001;">
+                <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                    <input type="checkbox" checked="@task.IsCompleted" @onchange="@(() => ToggleComplete(task))" style="margin-right: 8px;" />
+                    <span class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer; flex: 1;">@task.Text</span>
+                </div>
+                <div style="font-size: 0.95em; color: #666; margin-bottom: 8px;">
+                    Due: @task.DueDate.ToString("yyyy-MM-dd")
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+}
 
 @code {
     private string newTaskText = string.Empty;
     private DateTime newTaskDate = DateTime.Today;
     private List<TodoTask> tasks = new();
+    private bool isGridView = false; // Added this line
 
     protected override async Task OnInitializedAsync()
     {
@@ -69,11 +98,16 @@
         await Db.SaveTodoTask(task);
     }
 
-    private async Task RemoveTask(TodoTask task)
+    private async Task ClearAllTasks()
     {
-        await Db.DeleteTodoTask(task);
-        tasks.Remove(task);
+        await Db.DeleteAllTodoTasks();
+        tasks.Clear();
     }
 
     private string GetTaskClass(TodoTask task) => task.IsCompleted ? "completed" : "";
+
+    private void ToggleView() // Added this method
+    {
+        isGridView = !isGridView;
+    }
 }
