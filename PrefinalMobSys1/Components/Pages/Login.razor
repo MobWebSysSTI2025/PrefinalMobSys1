@@ -8,15 +8,16 @@
                 @StatusMessage
             </div>
         }
-        <fieldset>
-            <legend>Username:</legend>
+
+		<fieldset class="bg-secondary p-2 my-2">
+            <label>Username</label>
             <input class="form-control" type="text" @bind="Model.Username" placeholder="Username" title="Username" />
         </fieldset>
-        <fieldset>
-            <legend>Password:</legend>
-            <input type="password" @bind="Model.Password" placeholder="Password" title="Password" class="form-control ">
+		<fieldset class="bg-secondary p-2 my-2">
+            <label>Password</label>
+			<input class="form-control" type="password" @bind="Model.Password" placeholder="Password" title="Password">
         </fieldset>
-        <button type="submit" class="btn btn-warning scaledbutton">
+        <button type="submit" class="btn btn-success my-3">
             <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
         </button>
     </div>

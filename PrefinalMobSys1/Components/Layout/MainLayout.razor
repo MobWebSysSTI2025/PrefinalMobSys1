@@ -1,13 +1,9 @@
 ﻿@inherits LayoutComponentBase
 <div class="page">
-    @*<div class="sidebar">
-        <NavMenu />
-    </div>*@ 
-
     <main>
-        <div class="topbar">
+		<div class="topbar bg-primary">
             <span class="leftside">
-                <button id="btnMenu" class="btn text-primary" href="javascript:void(0)" onclick="toggleMenu()">
+                <button id="btnMenu" class="btn text-success" href="javascript:void(0)" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>
                 </button>
                 <button id="btnMenuClose" style="display:none" class="btn text-danger" href="javascript:void(0)" onclick="$('.mobile-nav').toggleClass('open');$('#btnMenu').toggle();$('#btnMenuClose').toggle()">

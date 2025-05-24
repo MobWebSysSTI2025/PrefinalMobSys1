@@ -286,38 +286,34 @@ fieldset {
     margin-top: 5px;
 }
 
-    .input-group.header-search span {
-        font-size: 25px !important;
-    }
+.input-group.header-search span {
+    font-size: 25px !important;
+}
 
-    .input-group.header-search input {
-        font-size: 16px !important;
-    }
+.input-group.header-search input {
+    font-size: 16px !important;
+}
 
-        .input-group.header-search input:focus {
-            outline: none;
-            box-shadow: none;
-            border: 1px solid #ced4da;
-        }
+.input-group.header-search input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+}
 
 
 article section:not(:first-child) {
     margin-top: 20px;
 }
 
-.smallmenulist {
+
+.smallmenulist button,.smallmenulist a {
+    /*border:1px solid #CCC;*/
+    font-size: 25px;
+    box-shadow: 0px 0px 10px #EEE;
+    border-radius: 100px;
+    margin: 0px 3px;
 }
 
-    .smallmenulist button,.smallmenulist a {
-        /*border:1px solid #CCC;*/
-        font-size: 25px;
-        box-shadow: 0px 0px 10px #EEE;
-        border-radius: 100px;
-        margin: 0px 3px;
-    }
-
-        .smallmenulist button i {
-        }
 
 .portrait-menulist {
     margin: 0px auto;
@@ -529,3 +525,4 @@ article section:not(:first-child) {
     border:none;
     /*box-shadow:0px 0px 8px #CCC;*/
 }
+

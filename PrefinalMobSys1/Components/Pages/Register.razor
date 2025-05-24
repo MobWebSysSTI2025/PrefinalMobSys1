@@ -7,32 +7,66 @@
         @StatusMessage
     </div>
 }
-<table>
-    <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
-    </tr>
-    <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
-    </tr>
-    <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
-    </tr>
-    <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
-    </tr>
-    <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
-    </tr>
-    <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
-    </tr>
-</table>
-<button @onclick="RegisterUser">
-    Save
-</button>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Username:</label>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control" type="text" @bind="Model.Username" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Password:</label>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control" type="password" @bind="Model.Password" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">First Name:</label>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control" type="text" @bind="Model.FirstName" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Last Name:</label>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control" type="text" @bind="Model.LastName" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Mobile:</label>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control" type="text" @bind="Model.MobileNumber" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Address:</label>
+        </div>
+        <div class="col-md-9">
+            <textarea class="form-control" @bind="Model.Address"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-success w-100" @onclick="RegisterUser">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

@@ -2,28 +2,23 @@
 @inject NavigationManager Nav
 @inject AppShellContext AppShell
 <style>
-    .userpane {
-        font-size: 24px;
-        color: green;
-        text-transform: capitalize;
-    }
 </style>
 <nav class="mobile-nav" onclick="hideMenu()">
     @if (AppShell.IsUserLoggedIn)
     {
         if (AppShell.CurrentUser!=null)
         {
-            <div class="userpane">
+            <div class="userpane text-secondary display-6 my-2">
                 <i class="fas fa-user"></i>&nbsp;
                 Hi @AppShell.CurrentUser.Username
-                <a class="btn btn-outline-danger" href="javascript:void(0)" style="float:right" @onclick="Logout">
+                <a class="btn btn-danger" href="javascript:void(0)" style="float:right" @onclick="Logout">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
 
             </div>
         }
     }
-    <ul>
+    <ul class="text-primary">
         <li>
             <a class="nav-link" href="">
                 <i class="fa fa-home"></i>&nbsp;Home
@@ -48,7 +43,7 @@
     <hr />
     @if (AppShell.IsUserLoggedIn)
     {
-        <ul>
+		<ul class="text-secondary">
             <!--Admin Pages Here-->
             <li>
                 <a class="nav-link" href="products">
@@ -69,7 +64,7 @@
     }
     else
     {
-        <ul>
+		<ul class="text-secondary">
             <li>
                 <a class="nav-link" href="register">
                     <i class="fa fa-list"></i>&nbsp;Register
