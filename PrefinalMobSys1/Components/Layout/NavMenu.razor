@@ -14,37 +14,33 @@
                 <a class="btn btn-danger" href="javascript:void(0)" style="float:right" @onclick="Logout">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
-
             </div>
         }
+
+		<ul class="text-primary">
+			<li>
+				<a class="nav-link" href="">
+					<i class="fa fa-home"></i>&nbsp;Home
+				</a>
+			</li>
+			<li>
+				<a class="nav-link" href="kanbanboard">
+					<i class="fa fa-clipboard"></i>&nbsp;Kanban Board
+				</a>
+			</li>
+		</ul>
     }
-    <ul class="text-primary">
-        <li>
-            <a class="nav-link" href="">
-                <i class="fa fa-home"></i>&nbsp;Home
-            </a>
-        </li>
-        <li>
-            <a class="nav-link" href="kanbanboard">
-                <i class="fa fa-clipboard"></i>&nbsp;Kanban Board
-            </a>
-        </li>
-		<li>
-			<a class="nav-link" href="settings">
-				<i class="fa fa-cog"></i>&nbsp;Settings
-			</a>
-		</li>
-    </ul>
+  
     <hr />
     @if (AppShell.IsUserLoggedIn)
     {
 		<ul class="text-secondary">
             <!--Admin Pages Here-->
-            <li>
-				<a class="nav-link" href="deletedtodolist">
-                    <i class="fa fa-trash"></i>&nbsp;Deleted Todo
-                </a>
-            </li>
+			<li>
+				<a class="nav-link" href="settings">
+					<i class="fa fa-cog"></i>&nbsp;Settings
+				</a>
+			</li>
             <li>
                 <a class="nav-link" href="users">
                     <i class="fa fa-users"></i>&nbsp;Users
@@ -67,7 +63,6 @@
             </li>
         </ul>
     }
-
 </nav>
 
 @code {

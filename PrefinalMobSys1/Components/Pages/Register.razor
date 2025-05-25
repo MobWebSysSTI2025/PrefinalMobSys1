@@ -11,7 +11,7 @@
 	<div class="card-header bg-secondary">
 		<h3>Register</h3>
 	</div>
-	<div class="card-body">
+	<div class="card-body bg-white text-primary">
 		<div class="mb-3">
 			<label class="form-label">Username:</label>
 			<input class="form-control" type="text" @bind="Model.Username" />
@@ -36,7 +36,7 @@
 			<label class="form-label">Address:</label>
 			<textarea class="form-control" @bind="Model.Address"></textarea>
 		</div>
-		<div class="card-footer mb-3">
+		<div class="card-footer mb-3 text-white">
 			<button class="btn btn-success w-100" @onclick="RegisterUser">
 				Save
 			</button>

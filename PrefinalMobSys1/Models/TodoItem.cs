@@ -9,12 +9,16 @@ namespace PrefinalMobSys1.Models
 {
 	public class TodoItem
 	{
-		[PrimaryKey, AutoIncrement]
+		[PrimaryKey]
+		[NotNull]
+		[AutoIncrement]
 		public int TodoID { get; set; }
 		[NotNull]
 		public string Title { get; set; }
+		[NotNull]
 		public string Description { get; set; }
 		public bool IsCompleted { get; set; }
+		public DateTime DueDate { get; set; }
 
 		[NotNull]
 		public bool IsDeleted { get; set; }

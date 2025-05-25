@@ -14,11 +14,9 @@
 	</span>    
 </SectionContent>
 
-
-
 @if (AppShell.IsUserLoggedIn)
 {
-	<h1 class="display-4">To-do List</h1>
+	<h1 class="display-4 mb-4">To-do List</h1>
 
 	<section>
 		<div class="smallmenulist">
@@ -27,7 +25,6 @@
 			</button>
 		</div>
 	</section>
-
 
 	<!-- modal -->
 	<div class="modal fade" id="addTodoModal" tabindex="-1" aria-hidden="true">
@@ -40,155 +37,96 @@
 				</div>
 				<!-- modal body -->
 				<div class="modal-body">
-					<input type="text" id="todoTitle" class="form-control my-2" placeholder="To-do Title" />
-					<textarea id="todoNotes" class="form-control my-2" placeholder="To-do Notes" />
+					<input type="text" id="todoTitle" class="form-control my-2" placeholder="To-do Title" @bind="TodoModel.Title"/>
+					<textarea id="todoNotes" class="form-control my-2" placeholder="To-do Notes" @bind="TodoModel.Description"/>
 				</div>
 
 				<!-- modal footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success">Add</button>
+					<button type="button" class="btn btn-success" @onclick="AddNewTodo">Add</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-	  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
-	  <label class="btn btn-outline-primary" for="btnradio1"><i class="fa fa-th"></i> Grid View</label>
-	  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
-	  <label class="btn btn-outline-secondary" for="btnradio2"><i class="fa fa-list"></i> List View</label> 
+	<div class="btn-group" role="group" aria-label="View toggle">
+		<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+			   checked="@((CurrentView == TodoViewMode.Grid))"
+			   @onchange="() => SetViewMode(TodoViewMode.Grid)">
+		<label class="btn btn-outline-primary" for="btnradio1">
+			<i class="fa fa-th"></i> Grid View
+		</label>
+		<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+			   checked="@((CurrentView == TodoViewMode.List))"
+			   @onchange="() => SetViewMode(TodoViewMode.List)">
+		<label class="btn btn-outline-secondary" for="btnradio2">
+			<i class="fa fa-list"></i> List View
+		</label>
 	</div>
 
 	<!-- List view -->
-	<div>
-		<div class="card shadow-sm my-4">
-			<div class="card-header bg-primary text-white p-2">
-				<input type="checkbox" class="form-check-input me-2" />
-				<span>Buy groceries</span>
-			</div>
-			<div class="card-body">
-				<p class="card-text">Remember to buy milk, eggs, and bread.</p>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-between">
-					<small class="text-muted">Due: Tomorrow</small>
-					<button class="btn btn-secondary btn-sm">Edit</button>
+	@if (CurrentView == TodoViewMode.List)
+	{
+		<!-- List view -->
+		<div>
+			@foreach (var item in Model.TodoItems)
+			{
+				<div class="card shadow-sm my-4">
+					<div class="card-header bg-primary text-white p-2">
+						<input id="chk_@item.TodoID" class="toggleSelect" type="checkbox" name="Todo" value="@item.TodoID" style="display:none" />
+						<input type="checkbox" class="form-check-input me-2" />
+						<span>@item.Title</span>
+					</div>
+					<div class="card-body">
+						<p class="card-text">@item.Description</p>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-between">
+							<small class="text-muted">Due: Tomorrow</small>
+							<button class="btn btn-secondary btn-sm">Edit</button>
+						</div>
+					</div>
 				</div>
-			</div>
+			}
 		</div>
-		<div class="card shadow-sm my-4">
-			<div class="card-header bg-primary text-white p-2">
-				<input type="checkbox" class="form-check-input me-2" />
-				<span>Finish project</span>
-				<span>
-					<i class="fa-ellipsis-v"></i>
-				</span>
-			</div>
-			<div class="card-body">
-				<p class="card-text">Complete the final report.</p>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-between">
-					<small class="text-muted">Due: Tomorrow</small>
-					<button class="btn btn-secondary btn-sm">Edit</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+	}
 	<!-- Grid view -->
-	<div class="row">
-		<div class="col-4 mb-4">
-			<div class="card shadow-sm h-100">
-				<div class="card-header bg-primary text-white p-2">
-					<input type="checkbox" class="form-check-input me-2" />
-					<span>Buy groceries</span>
+	else if (CurrentView == TodoViewMode.Grid)
+	{
+		<!-- Grid view -->
+		<div class="row">
+			@foreach (var item in Model.TodoItems)
+			{
+				<div class="col-4 mb-4">
+					<div class="card shadow-sm h-100">
+						<div class="card-header bg-info text-white p-2">
+							<input type="checkbox" class="form-check-input me-2" />
+							<span>@item.Title</span>
+						</div>
+						<div class="card-body">
+							<p class="card-text">@item.Description</p>
+						</div>
+						<div class="card-footer">
+							<div class="d-flex justify-content-between">
+								<small class="text-muted">Due: Tomorrow</small>
+								<button class="btn btn-secondary btn-sm">Edit</button>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="card-body">
-					<p class="card-text">Remember to buy milk, eggs, and bread.</p>
-				</div>
-				<div class="card-footer">
-				<div class="d-flex justify-content-between">
-					<small class="text-muted">Due: Tomorrow</small>
-					<button class="btn btn-secondary btn-sm">Edit</button>
-				</div>
-			</div>
-			</div>
+			}
 		</div>
-		<div class="col-4 mb-4">
-			<div class="card shadow-sm h-100">
-				<div class="card-header bg-primary text-white p-2">
-					<input type="checkbox" class="form-check-input me-2" />
-					<span>Finish project</span>
-				</div>
-				<div class="card-body">
-					<p class="card-text">Complete the final report.</p>
-				</div>
-				<div class="card-footer">
-				<div class="d-flex justify-content-between">
-					<small class="text-muted">Due: Tomorrow</small>
-					<button class="btn btn-secondary btn-sm">Edit</button>
-				</div>
-			</div>
-			</div>
-		</div>
-		<div class="col-4 mb-4">
-			<div class="card shadow-sm h-100">
-				<div class="card-header bg-primary text-white p-2">
-					<input type="checkbox" class="form-check-input me-2" />
-					<span>Finish project</span>
-				</div>
-				<div class="card-body">
-					<p class="card-text">Complete the final report.</p>
-				</div>
-				<div class="card-footer">
-				<div class="d-flex justify-content-between">
-					<small class="text-muted">Due: Tomorrow</small>
-					<button class="btn btn-secondary btn-sm">Edit</button>
-				</div>
-			</div>
-			</div>
-		</div>
-	</div>
+	}
 }
 else
 {
-		<!-- Default homepage design for guests -->
-		<div class="text-center mt-5">
-			<h1 class="display-3">Welcome to the To-do App!</h1>
-			<p class="lead">Please register or log in to access your to-do list and features.</p>
-		</div>
+	<!-- Default homepage design for guests -->
+	<div class="text-center mt-5">
+		<h1 class="display-3">Welcome to the To-do App!</h1>
+		<p class="lead">Please register or log in to access your to-do list and features.</p>
+	</div>
 }
-
-<!-- to-do list -->
-@*
-<div class="itemsList">
-	<ul>
-		@foreach (var item in Model.TodoList)
-		{
-			<li data-id="@item.TodoID" data-username="@item.Title">
-				<div class="leftindicator">
-					<input id="chk_@item.TodoID" class="toggleSelect" type="checkbox" name="User" value="@item.TodoID" style="display:none" />
-					<i class="fa fa-user toggleDeselect"></i>
-					&nbsp
-				</div>
-				<div class="centerdetails" onclick="$('#chk_@item.TodoID').trigger('click')">
-					<h5 class="text-success" style="margin-bottom:0px">
-						@(item.Title + ", " + item.Description)
-					</h5>
-				</div>
-				<div class="rightaction">
-					<button class="btn text-secondary" @onclick="()=>{ LoadTodo(item.TodoID); }">
-						<i class="fa fa-ellipsis-v"></i>
-					</button>
-				</div>
-			</li>
-		}
-	</ul>
-</div>
-*@
 
 <script src="js/jquery.cycle2.js"></script>
 <script>

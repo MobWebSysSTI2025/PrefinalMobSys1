@@ -221,49 +221,55 @@ fieldset {
     background-color: #FFF;
 }
 
-    pagepanelform input, pagepanelform button, pagepanelform label {
-        font-size: 21px !important;
-    }
+pagepanelform input, pagepanelform button, pagepanelform label {
+    font-size: 21px !important;
+}
 
 .itemsList {
     box-shadow: 0px 0px 10px #EEE;
     border-radius: 10px;
 }
 
-    .itemsList ul {
-        margin: 0px;
-        padding: 0px;
-    }
+.itemsList ul {
+    margin: 0px;
+    padding: 0px;
+}
 
-        .itemsList ul li {
-            list-style: none;
-            margin: 0px;
-            padding: 10px;
-            border: none;
-            border-bottom: 1px solid #CCC;
-        }
+.itemsList ul li {
+    list-style: none;
+    margin: 0px;
+    padding: 15px;
+    border: none;
+    border-bottom: 1px solid #CCC;
+}
 
-            .itemsList ul li:nth-child(even) {
-                background-color: #EEE;
-            }
+.itemsList ul li:nth-child(odd) {
+    background-color: rgb(27, 162, 246, 0.5);
+}
 
-            .itemsList ul li .leftindicator {
-                display: inline;
-                vertical-align: middle;
-                text-align: center;
-            }
+.itemsList ul li:nth-child(even) {
+    background-color: rgba(234, 57, 184, 0.5);
+}
 
-            .itemsList ul li .centerdetails {
-                display: inline-block;
-                width: calc(100% - 65px);
-                vertical-align: middle;
-            }
 
-            .itemsList ul li .rightaction {
-                display: inline;
-                vertical-align: middle;
-                text-align: right;
-            }
+
+.itemsList ul li .leftindicator {
+    display: inline;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.itemsList ul li .centerdetails {
+    display: inline-block;
+    width: calc(100% - 65px);
+    vertical-align: middle;
+}
+
+.itemsList ul li .rightaction {
+    display: inline;
+    vertical-align: middle;
+    text-align: right;
+}
 
 .form-buttons {
     margin-top: 10px;
