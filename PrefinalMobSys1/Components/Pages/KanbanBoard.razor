@@ -1,0 +1,61 @@
+﻿@page "/kanban"
+@using PrefinalMobSys1.Data
+
+<h3>Kanban Board</h3>
+<div class="kanban-board">
+    <div class="kanban-column">
+        <h4>To Do</h4>
+        <ul>
+            @foreach (var task in TodoTasks)
+            {
+                if (!task.IsCompleted)
+                {
+                    <li>
+                        @task.Text
+                        <button @onclick="() => MoveToDone(task)">Mark as Done</button>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="kanban-column">
+        <h4>Done</h4>
+        <ul>
+            @foreach (var task in TodoTasks)
+            {
+                if (task.IsCompleted)
+                {
+                    <li>
+                        @task.Text
+                        <button @onclick="() => MoveToTodo(task)">Mark as To Do</button>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Inject] public DatabaseContext Db { get; set; }
+
+    private List<TodoTask> TodoTasks = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        TodoTasks = await Db.GetTodoTasks();
+    }
+
+    private async Task MoveToDone(TodoTask task)
+    {
+        task.IsCompleted = true;
+        await Db.SaveTodoTask(task);
+        StateHasChanged();
+    }
+
+    private async Task MoveToTodo(TodoTask task)
+    {
+        task.IsCompleted = false;
+        await Db.SaveTodoTask(task);
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,22 @@
+﻿<h3>Settings</h3>
+
+@page "/settings"
+@using PrefinalMobSys1.Model
+@inject ThemeService ThemeService
+
+<h3>Settings</h3>
+<h5 for="themeSelect">Select Theme:</h5>
+<select id="themeSelect" @onchange="OnThemeChanged" style="margin-left: 10px;">
+    <option value="theme-light">Light</option>
+    <option value="theme-dark">Dark</option>
+    <option value="theme-blue">Blue</option>
+    <option value="theme-green">Green</option>
+</select>
+
+@code {
+    private async Task OnThemeChanged(ChangeEventArgs e)
+    {
+        var theme = e.Value?.ToString() ?? "theme-light";
+        await ThemeService.SetThemeAsync(theme);
+    }
+}
