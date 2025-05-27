@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,11 +25,14 @@ namespace PrefinalMobSys1.Models
         public string Description { get; set; }
 
         [NotNull]
+        public string PrepTimeInMinutes { get; set; }
+
+        [NotNull]
         public string CookTimeInMinutes { get; set; }
 
         [NotNull]
         public string InitialServings { get; set; }
-
+        public string Photo { get; set; }
         [NotNull]
         public bool IsDeleted { get; set; }
         public string CreatedBy { get; set; }

@@ -41,8 +41,7 @@ namespace PrefinalMobSys1.Shared
                     string localFilePath = Path.Combine(folderPath, eventualFilename);
 
                     using Stream sourceStream = await photo.OpenReadAsync();
-                    using FileStream localFileStream = File.OpenWrite(localFilePath);
-
+                    using FileStream localFileStream = new FileStream(localFilePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
                     await sourceStream.CopyToAsync(localFileStream);
 
                     resp = localFilePath;

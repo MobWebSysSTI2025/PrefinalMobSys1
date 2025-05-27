@@ -37,6 +37,10 @@
             <input type="text" @bind="Model.SelectedRecipe.Name" placeholder="Recipe Name" title="Recipe Name" class="form-control ">
         </fieldset>
         <fieldset class="hasText">
+            <legend>Preparation Time in Minutes:</legend>
+            <input type="number" @bind="Model.SelectedRecipe.PrepTimeInMinutes" placeholder="Preparation Time in Minutes" title="Cooking Time in Minutes" class="form-control ">
+        </fieldset>
+        <fieldset class="hasText">
             <legend>Cooking Time in Minutes:</legend>
             <input type="number" @bind="Model.SelectedRecipe.CookTimeInMinutes" placeholder="Cooking Time in Minutes" title="Cooking Time in Minutes" class="form-control ">
         </fieldset>
@@ -52,31 +56,22 @@
             <legend>Ingredients:</legend>
             <div class="editable-list">
                 <ul>
-                    <li class="el-recipe-ingredient" >
-                        <span class="el-recipe-ingredient-amount">1 1/2</span>
-                        <span class="el-recipe-ingredient-unit">lb</span>
-                        <span class="el-recipe-ingredient-name">ground pork</span>
-                        <button class="btn text-danger"><i class="fa fa-trash"></i></button>
-                    </li>
-                    <li class="el-recipe-ingredient" >
-                        <span class="el-recipe-ingredient-amount">1 1/2</span>
-                        <span class="el-recipe-ingredient-unit">lb</span>
-                        <span class="el-recipe-ingredient-name">ground pork</span>
-                        <button class="btn text-danger"><i class="fa fa-trash"></i></button>
-                    </li>
-                    <li class="el-recipe-ingredient">
-                        <span class="el-recipe-ingredient-amount">1 1/2</span>
-                        <span class="el-recipe-ingredient-unit">lb</span>
-                        <span class="el-recipe-ingredient-name">ground pork</span>
-                        <button class="btn text-danger"><i class="fa fa-trash"></i></button>
-                    </li>
+                    @foreach (var item in Model.Ingredients)
+                    {
+                        <li class="el-recipe-ingredient">
+                            <span class="el-recipe-ingredient-amount">@item.Amount</span>
+                            <span class="el-recipe-ingredient-unit">@item.Unit</span>
+                            <span class="el-recipe-ingredient-name">@item.Name</span>
+                            <button class="btn text-danger" @onclick="(()=>{DeleteIngredient(item.ID);})"><i class="fa fa-trash"></i></button>
+                        </li>
+                    }
                 </ul>
                 <hr />
                 <table style="width: 100%;">
                     <tr>
-                        <td style="width: 70px;"><input type="number" step="0.1" class="" /></td>
+                        <td style="width: 70px;"><input type="number" step="0.1" class="" @bind="Model.Ingredient.Amount" /></td>
                         <td>
-                            <select>
+                            <select @bind="Model.Ingredient.Unit">
                                 <option></option>
                                 <option>lb</option>
                                 <option>ounces</option>
@@ -90,54 +85,44 @@
                             </select>
                         </td>
                         <td colspan="1" rowspan="2">
-                            <button class="btn btn-success" style=" height: 100%; width: 50px; margin: 5px; padding: 25px 6px; font-size: 30px; "><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-success" style=" height: 100%; width: 50px; margin: 5px; padding: 25px 6px; font-size: 30px; " @onclick="()=>{ AddIngredient(); }"><i class="fa fa-plus"></i></button>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" placeholder="Add Ingredient here" class="" />
+                            <input type="text" placeholder="Add Ingredient here" class="" @bind="Model.Ingredient.Name" />
                         </td>
                     </tr>
                 </table>
-                
-                
-                
-                
+
+
+
+
             </div>
         </fieldset>
         <fieldset class="hasText">
             <legend>Cooking Steps:</legend>
             <div>
                 <ol>
-                    <li class="el-recipe-cooking-step">
-                        <p>
-                            Heat a cooking pot and pour-in the cooking oil.
-                        </p>
-                    </li>
-                    <li class="el-recipe-cooking-step">
-                        <p>
-                            Heat a cooking pot and pour-in the cooking oil.
-                        </p>
-                    </li>
-                    <li class="el-recipe-cooking-step">
-                        <p>
-                            Heat a cooking pot and pour-in the cooking oil.
-                        </p>
-                    </li>
-                    <li class="el-recipe-cooking-step">
-                        <p>
-                            Heat a cooking pot and pour-in the cooking oil.
-                        </p>
-                    </li>
+                    @foreach (var item in Model.CookingSteps)
+                    {
+                        <li class="el-recipe-cooking-step">
+                            <p>
+                                @item.StepDetails
+                            </p>
+                            <button class="btn text-danger" @onclick="(()=>{DeleteCookingStep(item.ID);})"><i class="fa fa-trash"></i></button>
+                        </li>
+                    }
+
                 </ol>
                 <table style="width:100%">
                     <tr>
-                        <td><textarea placeholder="Enter Cooking Step here"></textarea></td>
-                        <td><button class="btn btn-warning"><i class="fa fa-plus"></i></button></td>
+                        <td><textarea placeholder="Enter Cooking Step here" @bind="Model.Step.StepDetails"></textarea></td>
+                        <td><button class="btn btn-warning" @onclick="AddCookingStep"><i class="fa fa-plus"></i></button></td>
                     </tr>
                 </table>
-                
-                
+
+
             </div>
         </fieldset>
     </div>
@@ -147,4 +132,3 @@
             Save
         </button>
     </div>
-</div>
