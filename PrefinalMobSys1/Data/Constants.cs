@@ -14,7 +14,7 @@ namespace PrefinalMobSys1.Data
         /// <summary>
         /// Name for the SQLite DB created in the device
         /// </summary>
-        public const string DatabaseFilename = "applocal.db";
+        public const string DatabaseFilename = "applocaltest.db";
 
 
         /// <summary>

@@ -36,7 +36,7 @@ namespace PrefinalMobSys1.Data
             await database.CreateTableAsync<User>();
             await database.CreateTableAsync<Recipe>();
             await database.CreateTableAsync<RecipeIngredient>();
-
+            await database.CreateTableAsync<CookingStep>();
         }
 
         #region Users
@@ -65,7 +65,7 @@ namespace PrefinalMobSys1.Data
         #endregion
 
         #region Recipes
-        public async Task<List<Recipe>> Recipes() 
+        public async Task<List<Recipe>> Recipes()
         {
             await Init();
             return await database.Table<Recipe>().ToListAsync();
@@ -104,6 +104,29 @@ namespace PrefinalMobSys1.Data
         }
 
         public async Task<int> DeleteRecipeIngredient(RecipeIngredient incoming)
+        {
+            await Init();
+            return await database.DeleteAsync(incoming);
+        }
+        #endregion
+
+        #region Cooking Steps
+        public async Task<List<CookingStep>> CookingSteps()
+        {
+            await Init();
+            return await database.Table<CookingStep>().ToListAsync();
+        }
+
+        public async Task<int> SaveCookingStep(CookingStep incoming)
+        {
+            await Init();
+            if (incoming.ID != 0)
+                return await database.UpdateAsync(incoming);//update existing
+            else
+                return await database.InsertAsync(incoming);//insert new
+        }
+
+        public async Task<int> DeleteCookingStep(CookingStep incoming)
         {
             await Init();
             return await database.DeleteAsync(incoming);
