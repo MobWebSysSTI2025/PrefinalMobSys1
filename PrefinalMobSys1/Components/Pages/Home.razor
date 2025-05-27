@@ -44,6 +44,10 @@
                     </td>
                     <td>
                         @task.DueDate.ToString("yyyy-MM-dd")
+                    </td
+
+                    <td>
+                        <button @onclick="() => DeleteTask(task)" style="background: transparent; border: none; color: #e53935; cursor: pointer;">&#10006;</button>
                     </td>
                 </tr>
             }
@@ -63,6 +67,7 @@ else
                 <div style="font-size: 0.95em; color: #666; margin-bottom: 8px;">
                     Due: @task.DueDate.ToString("yyyy-MM-dd")
                 </div>
+                <button @onclick="() => DeleteTask(task)" style="background: transparent; border: none; color: #e53935; cursor: pointer; float: right;">&#10006;</button>
             </div>
         }
     </div>
@@ -103,6 +108,14 @@ else
         await Db.DeleteAllTodoTasks();
         tasks.Clear();
     }
+
+    private async Task DeleteTask(TodoTask task)
+{
+    // Remove from database
+    await Db.DeleteTodoTask(task);
+    // Remove from local list
+    tasks.Remove(task);
+}
 
     private string GetTaskClass(TodoTask task) => task.IsCompleted ? "completed" : "";
 
