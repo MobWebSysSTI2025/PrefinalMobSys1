@@ -4,7 +4,6 @@
         <button class="btn text-warning" onclick="history.back()">
             <i class="fas fa-arrow-left"></i>
         </button>
-        <CartButton />
         <button class="btn text-warning" >
             <i class="far fa-heart"></i>
         </button>
@@ -25,24 +24,48 @@
     <div class="product-info">
         <div class="product-properties">
             <div class="product-property">
-                <h3>Size</h3>
-                <h2>N/A</h2>
+                <h3>Preparation Time</h3>
+                <h2><i class="fa fa-clock-o"></i>@Model.SelectedRecipe.PrepTimeInMinutes</h2>
             </div>
             <div class="product-property">
-                <h3>Weight</h3>
-                <h2>N/A</h2>
-            </div>
-            <div class="product-property">
-                <h3>Price</h3>
-                <h2><i class="fa fa-dollar-sign"></i>@Model.SelectedRecipe.CookTimeInMinutes</h2>
+                <h3>Cooking Time</h3>
+                <h2><i class="fa fa-clock-o"></i>@Model.SelectedRecipe.CookTimeInMinutes</h2>
             </div>
         </div>
         <div class="product-description-review">
             <h3>Details</h3>
             <p>@Model.SelectedRecipe.Description</p>
         </div>
-        <button class="btn btn-@Model.Status addtocart" >
-            @Model.StatusMessage
-        </button>
+        <fieldset class="hasText">
+            <legend>Ingredients:</legend>
+            <div class="editable-list">
+                <ul>
+                    @foreach (var item in Model.Ingredients)
+                    {
+                        <li class="el-recipe-ingredient">
+                            <span class="el-recipe-ingredient-amount">@item.Amount</span>
+                            <span class="el-recipe-ingredient-unit">@item.Unit</span>
+                            <span class="el-recipe-ingredient-name">@item.Name</span>
+                        </li>
+                    }
+                </ul>
+                <hr />
+            </div>
+        </fieldset>
+        <fieldset class="hasText">
+            <legend>Cooking Steps:</legend>
+            <div>
+                <ol>
+                    @foreach (var item in Model.CookingSteps)
+                    {
+                        <li class="el-recipe-cooking-step">
+                            <p>
+                                @item.StepDetails
+                            </p>
+                        </li>
+                    }
+                </ol>
+            </div>
+        </fieldset>
     </div>
 </div>
