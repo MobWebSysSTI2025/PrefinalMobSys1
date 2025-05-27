@@ -1,9 +1,11 @@
-﻿@page "/"
+﻿﻿@page "/"
+@using PrefinalMobSys1.Data
+
 <SectionContent SectionName="page-buttons">    
      
 </SectionContent>
 <section>
-    <h1>Hello, Michelle</h1>
+    <h1>Hello, @AppShell.CurrentUser.FirstName @AppShell.CurrentUser.LastName</h1>
     <div class="search">
         <div id="searchBox" class="input-group header-search" style="">
             <span class="input-group-text text-warning"><i class="fa fa-search"></i></span>
@@ -11,7 +13,7 @@
         </div>
     </div>
 
-    <div class="grouping-menu">
+    <div class=" grouping-menu">
         <a href="/catalog?category=homemade" style="background-image:url('/imgs/groups/homemade.png')">
             <span>Homemade Cuisine</span>
         </a>

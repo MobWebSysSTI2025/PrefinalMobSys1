@@ -1,17 +1,17 @@
-﻿@using PrefinalMobSys1.Data
+﻿﻿@using PrefinalMobSys1.Data
 @inject NavigationManager Nav
 @inject AppShellContext AppShell
 <style>
     .userpane {
         font-size: 24px;
-        color: green;
+        color: black;
         text-transform: capitalize;
     }
 </style>
 <nav class="mobile-nav" onclick="hideMenu()">
     @if (AppShell.IsUserLoggedIn)
     {
-        if (AppShell.CurrentUser!=null)
+        if (AppShell.CurrentUser != null)
         {
             <div class="userpane">
                 <i class="fas fa-user"></i>&nbsp;
@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a class="nav-link" href="catalog">
+            <a class="nav-link" href="myrecipes">
                 <i class="fa fa-store"></i>&nbsp;My Recipes
             </a>
         </li>
@@ -40,7 +40,7 @@
             </a>
         </li>
         <li>
-            <a class="nav-link" href="myorders">
+            <a class="nav-link" href="myfavorites">
                 <i class="fa fa-truck"></i>&nbsp;My Favorites
             </a>
         </li>
