@@ -36,6 +36,7 @@
             <legend>Recipe Name:</legend>
             <input type="text" @bind="Model.SelectedRecipe.Name" placeholder="Recipe Name" title="Recipe Name" class="form-control ">
         </fieldset>
+        @* This is added for recording prep time *@
         <fieldset class="hasText">
             <legend>Preparation Time in Minutes:</legend>
             <input type="number" @bind="Model.SelectedRecipe.PrepTimeInMinutes" placeholder="Preparation Time in Minutes" title="Cooking Time in Minutes" class="form-control ">
