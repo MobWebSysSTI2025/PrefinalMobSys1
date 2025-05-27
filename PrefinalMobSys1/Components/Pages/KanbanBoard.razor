@@ -1,37 +1,41 @@
 ﻿@page "/kanban"
 @using PrefinalMobSys1.Data
 
-<h3>Kanban Board</h3>
+<h2 class="kanban-title">Kanban Board</h2>
 <div class="kanban-board">
     <div class="kanban-column">
-        <h4>To Do</h4>
-        <ul>
+        <div class="kanban-column-header">To Do</div>
+        <div class="kanban-tasks">
             @foreach (var task in TodoTasks)
             {
                 if (!task.IsCompleted)
                 {
-                    <li>
-                        @task.Text
-                        <button @onclick="() => MoveToDone(task)">Mark as Done</button>
-                    </li>
+                    <div class="kanban-task-card">
+                        <span>@task.Text</span>
+                        <button class="kanban-btn" @onclick="() => MoveToDone(task)">
+                            <i class="fa fa-check"></i> Done
+                        </button>
+                    </div>
                 }
             }
-        </ul>
+        </div>
     </div>
     <div class="kanban-column">
-        <h4>Done</h4>
-        <ul>
+        <div class="kanban-column-header">Done</div>
+        <div class="kanban-tasks">
             @foreach (var task in TodoTasks)
             {
                 if (task.IsCompleted)
                 {
-                    <li>
-                        @task.Text
-                        <button @onclick="() => MoveToTodo(task)">Mark as To Do</button>
-                    </li>
+                    <div class="kanban-task-card done">
+                        <span>@task.Text</span>
+                        <button class="kanban-btn" @onclick="() => MoveToTodo(task)">
+                            <i class="fa fa-undo"></i> To Do
+                        </button>
+                    </div>
                 }
             }
-        </ul>
+        </div>
     </div>
 </div>
 
