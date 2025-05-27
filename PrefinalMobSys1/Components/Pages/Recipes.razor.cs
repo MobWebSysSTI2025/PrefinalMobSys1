@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PrefinalMobSys1.Components.Pages
 {
-    public partial class Recipes:ComponentBase
+    public partial class Recipes : ComponentBase
     {
         [Inject]
         public AppShellContext AppShell { get; set; }
@@ -126,7 +126,7 @@ namespace PrefinalMobSys1.Components.Pages
             string searchTerm = e.Value.ToString().ToLower();
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                
+
                 var searchResults = (from row in items
                                      where row.Name.ToLower().Contains(searchTerm)
                                      || row.Description.ToLower().Contains(searchTerm)
@@ -144,7 +144,7 @@ namespace PrefinalMobSys1.Components.Pages
         public async void AddRecipePhoto(int RecipeID)
         {
             string folderPath = Path.Combine(FileSystem.AppDataDirectory, "RecipePhotos");
-            string retFile = await DeviceUtilities.AddPhoto(folderPath,$"{RecipeID}.jpg");
+            string retFile = await DeviceUtilities.AddPhoto(folderPath, $"{RecipeID}.jpg");
 
             if (!string.IsNullOrWhiteSpace(retFile))
             {
@@ -152,6 +152,16 @@ namespace PrefinalMobSys1.Components.Pages
                 //Model.LoadedPhotoPath = $"/RecipePhotos/{filenameOnly}";
                 await InvokeAsync(StateHasChanged);//refresh rendered page
             }
+        }
+        public async void ShowList()
+        {
+            Model.IsGrid = false;
+            await InvokeAsync(StateHasChanged);//refresh rendered page
+        }
+        public async void ShowGrid()
+        {
+            Model.IsGrid = true;
+            await InvokeAsync(StateHasChanged);//refresh rendered page
         }
     }
 }

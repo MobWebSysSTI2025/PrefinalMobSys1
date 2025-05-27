@@ -1,4 +1,4 @@
-﻿@page "/recipes"
+﻿﻿@page "/recipes"
 <h3><i class="fa fa-dolly-flatbed"></i>&nbsp;Recipes</h3>
 @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
 {
@@ -19,43 +19,71 @@
         <button class="btn text-primary" @onclick="AddRecipe" title="Add user">
             <i class="fa fa-plus"></i>
         </button>
-            <button class="btn text-warning" onclick="showSearchBox()">
+        <button class="btn text-warning" onclick="showSearchBox()">
             <i class="fa fa-search"></i>
         </button>
+        @if(!Model.IsGrid)
+        {
+            <button class="btn text-secondary" @onclick="ShowGrid" title="Switch to Grid View">
+                <i class="fa fa-th"></i>
+            </button>
+        }
+        else
+        {
+            <button class="btn text-secondary" @onclick="ShowList" title="Switch to List View">
+                <i class="fa fa-list"></i>
+            </button>
+        }
     }
     </span>
     
 </SectionContent>
-<div class="itemsList">
-    <ul>
-        @foreach (var prod in Model.Recipes)
-        {
-            <li data-id="@prod.ID" data-username="@prod.Name" @onclick="()=>{ LoadRecipe(prod.ID); }" class="text-success">
-                <div class="leftindicator">
-                    @* <i class="fa @(GetIconFromCategory(prod.Category))"></i> *@
-                    &nbsp
-                </div>
-                <div class="centerdetails">
-                    <h5>
-                        @prod.Name
-                    </h5>
-                    <p>@prod.Description</p>
-                </div>
-                <div class="rightaction">
-                    <button class="btn text-secondary" @onclick="()=>{ LoadRecipe(prod.ID); }">
-                        <i class="fa fa-caret-right"></i>
-                    </button>
-                </div>
-                <button style="display:none" class="btn btn-outline-danger" @onclick="()=>{ DeleteRecipe(prod.ID); }"><i class="fa fa-times"></i></button>
-            </li>
-        }
-    </ul>
-</div>
-@if (Model.ShowForm)
+@if (!Model.IsGrid)
 {
-    
+    <div class="itemsList">
+        <ul>
+            @foreach (var prod in Model.Recipes)
+            {
+                <li data-id="@prod.ID" data-username="@prod.Name" @onclick="()=>{ LoadRecipe(prod.ID); }" class="text-success">
+                    <div class="leftindicator">
+                        @* <i class="fa @(GetIconFromCategory(prod.Category))"></i> *@
+                        &nbsp
+                    </div>
+                    <div class="centerdetails">
+                        <h5>
+                            @prod.Name
+                        </h5>
+                        <p>@prod.Description</p>
+                    </div>
+                    <div class="rightaction">
+                        <button class="btn text-secondary" @onclick="()=>{ LoadRecipe(prod.ID); }">
+                            <i class="fa fa-caret-right"></i>
+                        </button>
+                    </div>
+                    <button style="display:none" class="btn btn-outline-danger" @onclick="()=>{ DeleteRecipe(prod.ID); }"><i class="fa fa-times"></i></button>
+                </li>
+            }
+        </ul>
+    </div>
 }
-
+@if (Model.IsGrid)
+{
+    <div class="grid-view">
+        <div class="row row-cols-3 row-cols-md-3 g-4">
+            @foreach (var prod in Model.Recipes)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@prod.Photo" class="card-img-top" alt="@prod.Name" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@prod.Name</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
 <script>
     function showSearchBox(){
         $('#searchBox').show();
