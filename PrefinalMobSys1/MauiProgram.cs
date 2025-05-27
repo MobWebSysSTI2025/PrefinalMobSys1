@@ -21,9 +21,8 @@ namespace PrefinalMobSys1
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
-
-            builder.Services.AddSingleton<AppShellContext>();
-            builder.Services.AddSingleton<DatabaseContext>();
+			builder.Services.AddSingleton<AppShellContext>();
+			builder.Services.AddSingleton<DatabaseContext>();
             return builder.Build();
         }
     }

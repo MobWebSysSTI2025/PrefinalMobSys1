@@ -9,7 +9,9 @@ namespace PrefinalMobSys1
             InitializeComponent();
 
             MainPage = new MainPage();
-            //Current.On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-        }
+			App.Current.UserAppTheme = AppTheme.Light;
+
+			//Current.On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+		}
     }
 }

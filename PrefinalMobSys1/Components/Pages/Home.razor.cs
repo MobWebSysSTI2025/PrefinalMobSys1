@@ -28,7 +28,9 @@ namespace PrefinalMobSys1.Components.Pages
 
 		public List<TodoItem> TodoItems { get; set; } = new();
 
-		public Models.TodoItem TodoModel = new Models.TodoItem();
+		public TodoItem TodoModel = new();
+
+		public string ClassControl = "";
 
 		/// <summary>
 		/// This will be called on load or start of a page
@@ -45,7 +47,8 @@ namespace PrefinalMobSys1.Components.Pages
                 AppShell.IsUserLoggedIn = true;
             }
 
-			Model.TodoItems = await DB.TodoList();
+			await DB.Init(); //initialize database
+			TodoItems = await DB.GetTodoList();
 			await InvokeAsync(StateHasChanged);
         }
 
@@ -67,114 +70,59 @@ namespace PrefinalMobSys1.Components.Pages
 			InvokeAsync(StateHasChanged);
 		}
 
-		public async Task<List<Models.TodoItem>> GetTodoList()
+		public async Task AddTodo()
 		{
-			return await DB.TodoList();
-		}
-
-		public async void SaveTodo()
-		{
-			if (string.IsNullOrWhiteSpace(Model.SelectedTodo.Title))
+			try
 			{
-				Model.Status = "danger";
-				Model.StatusMessage = "Title cannot be blank or only spaces!";
-			}
-			else if (
-				Model.TodoItems.Select(r => r.Title).ToList().Contains(Model.SelectedTodo.Title)
-				&&
-				Model.IsNew)
-			{
-				Model.Status = "danger";
-				Model.StatusMessage = "Title already exists!";
-			}
-			else
-			{
-				await DB.SaveTodoItem(Model.SelectedTodo);
-				CloseTodoForm();
-				Model.Status = "success";
-				Model.StatusMessage = "Todo item has been saved successfully!";
-				Model.TodoItems = await GetTodoList();
-			}
-			await InvokeAsync(StateHasChanged);
-		}
+				TodoModel.CreatedBy = "SYSTEM";
+				TodoModel.CreatedDate = DateTime.Now;
+				TodoModel.ModifiedDate = DateTime.Now;
+				TodoModel.IsDeleted = false;
 
-		public async void AddNewTodo()
-		{
-			TodoModel.IsDeleted = false;
-			TodoModel.CreatedBy = "SYSTEM";
-			TodoModel.ModifiedBy = "SYSTEM";
-			TodoModel.CreatedDate = DateTime.Now;
-			TodoModel.ModifiedDate = DateTime.Now;
+				await DB.SaveTodo(TodoModel);
+				TodoModel = new TodoItem();
+				TodoItems = await DB.GetTodoList();
 
-			await DB.SaveTodoItem(TodoModel);
-
-			// Refresh the list after adding
-			Model.TodoItems = await GetTodoList();
-
-			// Reset the input model
-			TodoModel = new Models.TodoItem();
-
-			Model.Status = "success";
-			Model.StatusMessage = "Todo item has been saved successfully!";
-
-			await InvokeAsync(StateHasChanged);
-		}
-
-
-		public async void LoadTodo(int todoid)
-		{
-			Model.SelectedTodo = (from row in Model.TodoItems where row.TodoID == todoid select row).FirstOrDefault();
-			ShowTodoForm();
-			Model.IsNew = false;
-			await InvokeAsync(StateHasChanged);//refresh rendered page
-		}
-
-		public async void DeleteTodo(int todoid)
-		{
-			var selectedTodo = (from row in Model.TodoItems where row.TodoID == todoid select row).FirstOrDefault();
-			if (selectedTodo != null)
-			{
-				await DB.DeleteTodoItem(selectedTodo);
-				Model.Status = "success";
-				Model.StatusMessage = "Todo item has been deleted successfully!";
-				Model.TodoItems = await GetTodoList();
 				await InvokeAsync(StateHasChanged);
 			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error in AddTodo: {ex.Message}");
+			}
 		}
 
-		public void AddTodo()
-		{
-			Model.StatusMessage = ""; //clear alert
-			Model.SelectedTodo = new Models.TodoItem();
-			Model.IsNew = true;
-			ShowTodoForm();
-		}
 
-		public async void ShowTodoForm()
+		public async Task UpdateTodo()
 		{
-			Model.ShowForm = true;
-			await Task.Delay(100);
-			//ClassControl = "animate__animated animate__slideInUp";
+			TodoModel.ModifiedDate = DateTime.Now;
+			await DB.SaveTodo(TodoModel);
+
+			TodoItems = await DB.GetTodoList();
 			await InvokeAsync(StateHasChanged);
 		}
 
-		public async void CloseTodoForm()
+		public async Task DeleteTodo(TodoItem item)
 		{
-			//ClassControl = "animate__animated animate__slideOutDown";
-			await Task.Delay(100);
-			Model.ShowForm = false;
+			item.IsDeleted = true;
+			await DB.DeleteTodo(item);
+
+			TodoItems = await DB.GetTodoList();
 			await InvokeAsync(StateHasChanged);
 		}
 
-		public async void SelectUsers()
+		public void SetEditTodo(TodoItem item)
 		{
-			Model.SelectMode = true;
-			await InvokeAsync(StateHasChanged);
+			TodoModel = item;
 		}
 
-		public async void CancelSelectUsers()
+		public async Task ToggleCompletion(TodoItem item)
 		{
-			Model.SelectMode = false;
+			item.IsCompleted = !item.IsCompleted;
+			item.ModifiedDate = DateTime.Now;
+
+			await DB.SaveTodo(item);
+			TodoItems = await DB.GetTodoList();
+
 			await InvokeAsync(StateHasChanged);
 		}
 	}

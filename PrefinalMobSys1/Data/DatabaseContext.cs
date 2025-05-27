@@ -1,4 +1,5 @@
-﻿ using PrefinalMobSys1.Models;
+﻿//	 
+using PrefinalMobSys1.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -59,14 +60,26 @@ namespace PrefinalMobSys1.Data
             return await database.DeleteAsync(incoming);
         }
 
-		//TodoItem Methods
-		public async Task<List<TodoItem>> TodoList()
+		//Todo Methods
+		public async Task<List<TodoItem>> GetTodoList()
 		{
 			await Init();
 			return await database.Table<TodoItem>().ToListAsync();
 		}
 
-		public async Task<int> SaveTodoItem(TodoItem item)
+		public async Task<List<TodoItem>> GetItemsNotDoneAsync()
+		{
+			await Init();
+			return await database.Table<TodoItem>().Where(t => t.IsCompleted).ToListAsync();
+		}
+
+		public async Task<TodoItem> GetTodoItem(int id)
+		{
+			await Init();
+			return await database.Table<TodoItem>().Where(i => i.TodoID == id).FirstOrDefaultAsync();
+		}
+
+		public async Task<int> SaveTodo(TodoItem item)
 		{
 			await Init();
 			if (item.TodoID != 0)
@@ -75,7 +88,7 @@ namespace PrefinalMobSys1.Data
 				return await database.InsertAsync(item);
 		}
 
-		public async Task<int> DeleteTodoItem(TodoItem item)
+		public async Task<int> DeleteTodo(TodoItem item)
 		{
 			await Init();
 			return await database.DeleteAsync(item);

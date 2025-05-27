@@ -18,7 +18,7 @@ namespace PrefinalMobSys1.Models
 		[NotNull]
 		public string Description { get; set; }
 		public bool IsCompleted { get; set; }
-		public DateTime DueDate { get; set; }
+		public DateTime? DueDate { get; set; } = DateTime.Today;
 
 		[NotNull]
 		public bool IsDeleted { get; set; }

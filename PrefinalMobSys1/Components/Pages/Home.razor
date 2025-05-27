@@ -1,5 +1,8 @@
 ﻿@page "/"
 @using PrefinalMobSys1.Components.Shared
+@using PrefinalMobSys1.Data
+@using PrefinalMobSys1.Models
+
 <SectionContent SectionName="page-buttons">
 	<div id="searchBox" class="input-group header-search" style="display:none;">
 		<span class="input-group-text text-warning"><i class="fa fa-search"></i></span>
@@ -18,6 +21,7 @@
 {
 	<h1 class="display-4 mb-4">To-do List</h1>
 
+	<!-- add new todo button -->
 	<section>
 		<div class="smallmenulist">
 			<button class="btn text-white bg-secondary floating-btn rounded-5" data-bs-toggle="modal" data-bs-target="#addTodoModal">
@@ -26,7 +30,7 @@
 		</div>
 	</section>
 
-	<!-- modal -->
+	<!-- add modal -->
 	<div class="modal fade" id="addTodoModal" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -35,82 +39,143 @@
 					<h5 class="modal-title">Add Todo</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+
 				<!-- modal body -->
 				<div class="modal-body">
-					<input type="text" id="todoTitle" class="form-control my-2" placeholder="To-do Title" @bind="TodoModel.Title"/>
-					<textarea id="todoNotes" class="form-control my-2" placeholder="To-do Notes" @bind="TodoModel.Description"/>
+					<input type="text" id="todoTitle" class="form-control my-2" placeholder="To-do Title" @bind="TodoModel.Title" />
+					<textarea id="todoNotes" class="form-control my-2" placeholder="To-do Notes" @bind="TodoModel.Description"></textarea>
+					<label class="mt-2">Set Due Date:</label>
+					<input type="date" id="todoDueDate" class="form-control my-2" @bind="TodoModel.DueDate" />
 				</div>
 
 				<!-- modal footer -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success" @onclick="AddNewTodo">Add</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-success" @onclick="AddTodo">Add</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- toggle button for view mode -->
 	<div class="btn-group" role="group" aria-label="View toggle">
 		<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
-			   checked="@((CurrentView == TodoViewMode.Grid))"
-			   @onchange="() => SetViewMode(TodoViewMode.Grid)">
+		checked="@((CurrentView == TodoViewMode.Grid))"
+		@onchange="() => SetViewMode(TodoViewMode.Grid)">
 		<label class="btn btn-outline-primary" for="btnradio1">
 			<i class="fa fa-th"></i> Grid View
 		</label>
 		<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
-			   checked="@((CurrentView == TodoViewMode.List))"
-			   @onchange="() => SetViewMode(TodoViewMode.List)">
+		checked="@((CurrentView == TodoViewMode.List))"
+		@onchange="() => SetViewMode(TodoViewMode.List)">
 		<label class="btn btn-outline-secondary" for="btnradio2">
 			<i class="fa fa-list"></i> List View
 		</label>
 	</div>
 
-	<!-- List view -->
+	<!-- List View -->
 	@if (CurrentView == TodoViewMode.List)
 	{
-		<!-- List view -->
-		<div>
-			@foreach (var item in Model.TodoItems)
-			{
-				<div class="card shadow-sm my-4">
-					<div class="card-header bg-primary text-white p-2">
-						<input id="chk_@item.TodoID" class="toggleSelect" type="checkbox" name="Todo" value="@item.TodoID" style="display:none" />
-						<input type="checkbox" class="form-check-input me-2" />
+		@foreach (var item in TodoItems)
+		{
+			<div class="card shadow-sm my-4">
+				<div class="card-header bg-secondary text-white d-flex justify-content-between p-2">
+					<div>
+						<input type="checkbox" class="form-check-input me-2" checked="@item.IsCompleted" @onchange="@(() => ToggleCompletion(item))"/>
 						<span>@item.Title</span>
 					</div>
-					<div class="card-body">
-						<p class="card-text">@item.Description</p>
+					<div>
+						<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteTodoModal">
+							<i class="fa fa-trash"></i>
+						</button>
 					</div>
-					<div class="card-footer">
-						<div class="d-flex justify-content-between">
-							<small class="text-muted">Due: Tomorrow</small>
-							<button class="btn btn-secondary btn-sm">Edit</button>
+				</div>
+				<div class="card-body">
+					<p class="card-text text-wrap">@item.Description</p>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-between">
+						<small class="text-muted">Due: @item.DueDate?.ToString("MMMM dd, yyyy")</small>
+						<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTodoModal" @onclick="()=>{ SetEditTodo(item); }">Edit</button>
+					</div>
+				</div>
+			</div>
+
+				<!-- confirm delete modal -->
+				<div class="modal" id="confirmDeleteTodoModal">
+					<div class="modal-dialog bg-info modal-lg">
+						<div class="modal-content">
+							<div class="modal-header p-3">
+								<h3 class="modal-title">Confirm Deletion</h3>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body text-wrap p-4">
+								<p>Are you sure you want to delete this todo?</p>
+							</div>
+							<div class="modal-footer d-flex flex-wrap justify-content-end gap-2 p-2">
+								<form method="post" asp-action="DeleteAccount">
+									<input hidden type="text" name="Employee_ID" id="Employee_ID" />
+									<button class="btn btn-danger" @onclick="async ()=>{ await DeleteTodo(item); }">
+										Delete
+									</button>
+									<button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			}
-		</div>
+		}		
 	}
-	<!-- Grid view -->
 	else if (CurrentView == TodoViewMode.Grid)
 	{
-		<!-- Grid view -->
-		<div class="row">
-			@foreach (var item in Model.TodoItems)
+		<!-- Grid View -->
+		<div class="row my-4">
+			@foreach(var item in TodoItems) 
 			{
 				<div class="col-4 mb-4">
 					<div class="card shadow-sm h-100">
-						<div class="card-header bg-info text-white p-2">
-							<input type="checkbox" class="form-check-input me-2" />
-							<span>@item.Title</span>
+						<div class="card-header bg-secondary text-white d-flex justify-content-between p-2">
+							<div>
+								<input type="checkbox" class="form-check-input me-2" checked="@item.IsCompleted" @onchange="async () => { await ToggleCompletion(item); }" />
+								<span>@item.Title</span>
+							</div>
+							<div>
+								<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteTodoModal">
+									<i class="fa fa-trash"></i>
+								</button>
+							</div>
 						</div>
 						<div class="card-body">
-							<p class="card-text">@item.Description</p>
+							<p class="card-text text-wrap">@item.Description</p>
 						</div>
 						<div class="card-footer">
 							<div class="d-flex justify-content-between">
-								<small class="text-muted">Due: Tomorrow</small>
-								<button class="btn btn-secondary btn-sm">Edit</button>
+								<small class="text-muted">Due: @item.DueDate?.ToString("MMMM dd, yyyy")</small>
+								<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTodoModal" @onclick="()=>{ SetEditTodo(item);}">Edit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- confirm delete modal -->
+				<div class="modal" id="confirmDeleteTodoModal">
+					<div class="modal-dialog bg-info modal-lg">
+						<div class="modal-content">
+							<div class="modal-header p-3">
+								<h3 class="modal-title">Confirm Deletion</h3>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body text-wrap p-4">
+								<p>Are you sure you want to delete this todo?</p>
+							</div>
+							<div class="modal-footer d-flex flex-wrap justify-content-end gap-2 p-2">
+								<form method="post" asp-action="DeleteAccount">
+									<input hidden type="text" name="Employee_ID" id="Employee_ID" />
+									<button class="btn btn-danger" @onclick="async ()=>{ await DeleteTodo(item); }">
+										Delete
+									</button>
+									<button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -118,6 +183,33 @@
 			}
 		</div>
 	}
+
+	<!-- edit modal -->
+	<div class="modal fade" id="editTodoModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- modal header -->
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Todo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<!-- modal body -->
+				<div class="modal-body">
+					<input type="text" id="editTodoTitle" class="form-control my-2" placeholder="Edit To-do Title" @bind="TodoModel.Title" />
+					<textarea id="editTodoNotes" class="form-control my-2" placeholder="Edit To-do Notes" @bind="TodoModel.Description"></textarea>
+					<label class="mt-2">Edit Due Date:</label>
+					<input type="date" id="editTodoDueDate" class="form-control my-2" @bind="TodoModel.DueDate" />
+				</div>
+
+				<!-- modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-success" @onclick="UpdateTodo">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 }
 else
 {
@@ -127,6 +219,7 @@ else
 		<p class="lead">Please register or log in to access your to-do list and features.</p>
 	</div>
 }
+
 
 <script src="js/jquery.cycle2.js"></script>
 <script>

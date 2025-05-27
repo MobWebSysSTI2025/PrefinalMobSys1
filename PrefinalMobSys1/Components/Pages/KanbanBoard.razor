@@ -1,82 +1,58 @@
 ﻿@page "/kanbanboard"
+@using PrefinalMobSys1.Data
+@using PrefinalMobSys1.Models
+@inject DatabaseContext DB
 
 <div class="container py-4">
 	<h1 class="mb-4 display-4">Kanban Board</h1>
 	<div class="row">
 		<!-- To Do Column -->
-		<div class="col-md-4 my-2">
+		<div class="col-md-6 my-2">
 			<div class="card">
-				<div class="card-header bg-primary text-white">
+				<div class="text-2xl card-header bg-primary text-white">
 					Not Started
 				</div>
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy groceries</span>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy toys</span>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy clothes</span>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<!-- In Progress Column -->
-		<div class="col-md-4 my-2">
-			<div class="card">
-				<div class="card-header bg-secondary text-white">
-					In Progress
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy groceries</span>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy toys</span>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy clothes</span>
-						</div>
-					</li>
+					@foreach(var item in todoItems)
+					{
+						<li class="list-group-item p-5">
+							<div class="bg-light text-white p-2">
+								<span>@item.Title</span>
+							</div>
+						</li>
+					}
 				</ul>
 			</div>
 		</div>
 		<!-- Done Column -->
-		<div class="col-md-4 my-2">
+		<div class="col-md-6 my-2">
 			<div class="card">
-				<div class="card-header bg-info text-white">
+				<div class="text-2xl card-header bg-info text-white">
 					Done
 				</div>
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy groceries</span>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy toys</span>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="bg-light text-white p-2">
-							<span>Buy clothes</span>
-						</div>
-					</li>
+					@foreach (var item in completedItems)
+					{
+						<li class="list-group-item">
+							<div class="bg-light text-white p-2">
+								<span>@item.Title</span>
+							</div>
+						</li>
+					}
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+
+@code {
+	private List<TodoItem> todoItems = new();
+	private List<TodoItem> completedItems = new();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var allItems = await DB.GetTodoList();
+		todoItems = allItems.Where(x => !x.IsCompleted).ToList();
+		completedItems = allItems.Where(x => x.IsCompleted).ToList();
+	}
+}
