@@ -190,14 +190,30 @@ body, #app, .main-content {
         }
     }
 
+:root {
+    --color-primary: #1976d2;
+    --color-header-text: #fff;
+    --color-border: #e0e0e0;
+    --background: #fff;
+    --text-color: #222;
+    --nav-text: #222;
+}
+
+:root {
+    --sidebar-bg: #0d6efd;
+    --sidebar-text: #222;
+    --sidebar-hover: #1565c0;
+    --sidebar-active: #1976d2;
+}
+
+@media (prefers-color-scheme: dark) {
     :root {
-        --color-primary: #1976d2;
-        --color-header-text: #fff;
-        --color-border: #e0e0e0;
-        --background: #fff;
-        --text-color: #222;
-        --nav-text: #222;
+        --sidebar-bg: #1976d2;
+        --sidebar-text: #222;
+        --sidebar-hover: #1565c0;
+        --sidebar-active: #2196f3;
     }
+}
 
     h1, h2, h3, h4, h5, h6 {
         color: var(--text-color) !important;
@@ -242,6 +258,82 @@ body, #app, .main-content {
         --text-color: #1b5e20;
         --nav-text: #fff;
     }
+
+.topbar-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 64px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 8px #0002;
+}
+
+    .topbar-nav .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0 18px;
+        height: 64px;
+        color: var(--sidebar-text);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: background 0.15s;
+        border: none;
+        background: none;
+    }
+
+        .topbar-nav .nav-link:hover, .topbar-nav .nav-link.active {
+            background: var(--sidebar-hover);
+            color: var(--sidebar-text);
+        }
+
+    .topbar-nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0 16px;
+        height: 100%;
+        align-items: center;
+    }
+
+    .topbar-nav li {
+        margin: 0 8px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .topbar-nav hr {
+        display: none;
+    }
+
+.main-content {
+    margin-left: 0 !important;
+    margin-top: 64px !important;
+    padding: 24px;
+}
+
+@media (max-width: 700px) {
+    .topbar-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .topbar-nav {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-content {
+        margin-top: 64px !important;
+        margin-left: 0 !important;
+    }
+}
 
     .task-table, .task-table th, .task-table td, .task-table tr {
         color: var(--text-color) !important;

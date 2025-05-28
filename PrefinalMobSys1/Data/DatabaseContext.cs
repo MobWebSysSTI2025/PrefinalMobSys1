@@ -79,7 +79,12 @@ namespace PrefinalMobSys1.Data
             return await database.DeleteAsync(task);
         }
 
-        // Add this method to delete all TodoTasks from the database
+        public async Task<int> UpdateTodoTask(TodoTask incoming)
+        {
+            await Init();
+            return await database.UpdateAsync(incoming);
+        }
+
         public async Task DeleteAllTodoTasks()
         {
             await Init();

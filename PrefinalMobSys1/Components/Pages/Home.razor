@@ -40,14 +40,36 @@
                         <input type="checkbox" checked="@task.IsCompleted" @onchange="@(() => ToggleComplete(task))" />
                     </td>
                     <td>
-                        <label class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer;">@task.Text</label>
+                        @if (editTask == task)
+                        {
+                            <input @bind="editTaskText" style="width: 90%;" />
+                        }
+                        else
+                        {
+                            <label class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer;">@task.Text</label>
+                        }
                     </td>
                     <td>
-                        @task.DueDate.ToString("yyyy-MM-dd")
-                    </td
-
+                        @if (editTask == task)
+                        {
+                            <input type="date" @bind="editTaskDate" />
+                        }
+                        else
+                        {
+                            @task.DueDate.ToString("yyyy-MM-dd")
+                        }
+                    </td>
                     <td>
-                        <button @onclick="() => DeleteTask(task)" style="background: transparent; border: none; color: #e53935; cursor: pointer;">&#10006;</button>
+                        @if (editTask == task)
+                        {
+                            <button @onclick="() => SaveEditTask(task)" style="color: green;">✔</button>
+                            <button @onclick="CancelEditTask" style="color: #e53935;">✖</button>
+                        }
+                        else
+                        {
+                            <button @onclick="() => StartEditTask(task)" style="color: #1976d2;">✎</button>
+                            <button @onclick="() => DeleteTask(task)" style="background: transparent; border: none; color: #e53935; cursor: pointer;">&#10006;</button>
+                        }
                     </td>
                 </tr>
             }
@@ -62,12 +84,35 @@ else
             <div class="task-card">
                 <div style="display: flex; align-items: center; margin-bottom: 8px;">
                     <input type="checkbox" checked="@task.IsCompleted" @onchange="@(() => ToggleComplete(task))" style="margin-right: 8px;" />
-                    <span class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer; flex: 1;">@task.Text</span>
+                    @if (editTask == task)
+                    {
+                        <input @bind="editTaskText" style="flex:1; margin-right:8px;" />
+                    }
+                    else
+                    {
+                        <span class="@GetTaskClass(task)" @onclick="@(() => ToggleComplete(task))" style="cursor: pointer; flex: 1;">@task.Text</span>
+                    }
+                    @if (editTask == task)
+                    {
+                        <button @onclick="() => SaveEditTask(task)" style="color: green;">✔</button>
+                        <button @onclick="CancelEditTask" style="color: #e53935;">✖</button>
+                    }
+                    else
+                    {
+                        <button @onclick="() => StartEditTask(task)" style="color: #1976d2;">✎</button>
+                        <button @onclick="() => DeleteTask(task)" style="background: transparent; border: none; color: #e53935; cursor: pointer; margin-left: 8px;">&#10006;</button>
+                    }
                 </div>
                 <div style="font-size: 0.95em; color: #666; margin-bottom: 8px;">
-                    Due: @task.DueDate.ToString("yyyy-MM-dd")
+                    @if (editTask == task)
+                    {
+                        <input type="date" @bind="editTaskDate" />
+                    }
+                    else
+                    {
+                        <span>Due: @task.DueDate.ToString("yyyy-MM-dd")</span>
+                    }
                 </div>
-                <button @onclick="() => DeleteTask(task)" style="background: transparent; border: none; color: #e53935; cursor: pointer; float: right;">&#10006;</button>
             </div>
         }
     </div>
@@ -77,7 +122,12 @@ else
     private string newTaskText = string.Empty;
     private DateTime newTaskDate = DateTime.Today;
     private List<TodoTask> tasks = new();
-    private bool isGridView = false; // Added this line
+    private bool isGridView = false;
+
+    // Edit state
+    private TodoTask? editTask = null;
+    private string editTaskText = string.Empty;
+    private DateTime editTaskDate = DateTime.Today;
 
     protected override async Task OnInitializedAsync()
     {
@@ -110,17 +160,39 @@ else
     }
 
     private async Task DeleteTask(TodoTask task)
-{
-    // Remove from database
-    await Db.DeleteTodoTask(task);
-    // Remove from local list
-    tasks.Remove(task);
-}
+    {
+        await Db.DeleteTodoTask(task);
+        tasks.Remove(task);
+    }
 
     private string GetTaskClass(TodoTask task) => task.IsCompleted ? "completed" : "";
 
-    private void ToggleView() // Added this method
+    private void ToggleView()
     {
         isGridView = !isGridView;
+    }
+
+    // Edit Task Methods
+    private void StartEditTask(TodoTask task)
+    {
+        editTask = task;
+        editTaskText = task.Text;
+        editTaskDate = task.DueDate;
+    }
+
+    private void CancelEditTask()
+    {
+        editTask = null;
+    }
+
+    private async Task SaveEditTask(TodoTask task)
+    {
+        if (editTask != null)
+        {
+            editTask.Text = editTaskText;
+            editTask.DueDate = editTaskDate;
+            await Db.UpdateTodoTask(editTask);
+            editTask = null;
+        }
     }
 }
