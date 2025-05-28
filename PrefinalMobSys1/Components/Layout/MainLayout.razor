@@ -69,6 +69,31 @@
             opacity: 0;
             transition: opacity 1.2s ease;
         }
+    .topbar .brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: #fff;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    /* Hide on phone screens */
+    @@media (max-width: 768px) {
+        .topbar .brand {
+            display: none;
+        }
+    }
+
+    /* Visible on tablets and PCs */
+    @@media (min-width: 769px) {
+        .topbar .brand {
+            display: block;
+        }
+    }
 
     @@keyframes gradientShift {
         0%
@@ -144,7 +169,7 @@
     }
     /* Scrollbar styling */
     body {
-        scrollbar-color: #FF5300 #ffffff; /* Thumb color and track color */
+        scrollbar-color: #FFFFFF #ffffff; /* Thumb color and track color */
         scrollbar-width: thin; /* For Firefox */
     }
 
@@ -159,12 +184,12 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #FF5300; /* Matches the primary accent color */
+        background: #FFFFFF; /* Matches the primary accent color */
         border-radius: 4px; /* Rounded corners for the thumb */
     }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #FF7A33; /* Slightly lighter orange for hover effect */
+            background: #FFFFFF; /* Slightly lighter orange for hover effect */
         }
 </style>
 <script>

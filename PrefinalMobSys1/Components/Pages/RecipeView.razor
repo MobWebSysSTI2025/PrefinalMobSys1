@@ -7,6 +7,18 @@
         <button class="btn text-warning" >
             <i class="far fa-heart"></i>
         </button>
+        @if (!Model.IsUSA)
+        {
+            <button class="btn text-warning" @onclick="ConvertValuesToUs" title="Switch to US Scale">
+                <i class="fa fa-th"></i>
+            </button>
+        }
+        else
+        {
+            <button class="btn text-primary" @onclick="ConvertValuesToMetric" title="Switch to List View">
+                <i class="fa fa-list"></i>
+            </button>
+        }
     </span>    
 </SectionContent>
 <div class="product-details">

@@ -80,8 +80,10 @@ namespace PrefinalMobSys1.Components.Pages
                 //UI to remove to cart
             }
         }
-        public async Task ConvertValues()
+        public async Task ConvertValuesToUs()
         {
+            Model.IsUSA = true; //toggle the unit system
+
             foreach (var ingredient in Model.Ingredients)
             {
                 switch (ingredient.Unit)
@@ -89,22 +91,58 @@ namespace PrefinalMobSys1.Components.Pages
                     case "kg":
                         ingredient.Amount = Model.IsUSA ? ingredient.Amount * 2.20462 : ingredient.Amount / 2.20462;
                         ingredient.Unit = Model.IsUSA ? "lb" : "kg";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
                         break;
                     case "g":
                         ingredient.Amount = Model.IsUSA ? ingredient.Amount * 0.035274 : ingredient.Amount / 0.035274;
                         ingredient.Unit = Model.IsUSA ? "oz" : "g";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
                         break;
                     case "l":
                         ingredient.Amount = Model.IsUSA ? ingredient.Amount * 0.264172 : ingredient.Amount / 0.264172;
                         ingredient.Unit = Model.IsUSA ? "qt" : "l";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
                         break;
                     case "ml":
                         ingredient.Amount = Model.IsUSA ? ingredient.Amount * 0.033814 : ingredient.Amount / 0.033814;
                         ingredient.Unit = Model.IsUSA ? "fl oz" : "ml";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
                         break;
                 }
             }
-            Model.IsUSA = !Model.IsUSA; //toggle the unit system
+            
+            await InvokeAsync(StateHasChanged);
+        }
+        public async Task ConvertValuesToMetric()
+        {
+            Model.IsUSA = false; //toggle the unit system
+
+            foreach (var ingredient in Model.Ingredients)
+            {
+                switch (ingredient.Unit)
+                {
+                    case "lb":
+                        ingredient.Amount = !Model.IsUSA ? ingredient.Amount / 2.20462 : ingredient.Amount * 2.20462;
+                        ingredient.Unit = !Model.IsUSA ? "kg" : "lb";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
+                        break;
+                    case "oz":
+                        ingredient.Amount = !Model.IsUSA ? ingredient.Amount / 0.035274 : ingredient.Amount * 0.035274;
+                        ingredient.Unit = !Model.IsUSA ? "g" : "oz";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
+                        break;
+                    case "qt":
+                        ingredient.Amount = !Model.IsUSA ? ingredient.Amount / 0.264172 : ingredient.Amount * 0.264172;
+                        ingredient.Unit = !Model.IsUSA ? "l" : "qt";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
+                        break;
+                    case "fl oz":
+                        ingredient.Amount = !Model.IsUSA ? ingredient.Amount / 0.033814 : ingredient.Amount * 0.033814;
+                        ingredient.Unit = !Model.IsUSA ? "ml" : "fl oz";
+                        ingredient.Amount = Math.Round(ingredient.Amount, 2);
+                        break;
+                }
+            }
             await InvokeAsync(StateHasChanged);
         }
         public async Task LoadRecipe(int RecipeID)
