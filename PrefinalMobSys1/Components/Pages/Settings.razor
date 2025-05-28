@@ -1,0 +1,58 @@
+﻿@page "/settings"
+@using PrefinalMobSys1.Model
+@inject ThemeService ThemeService
+
+<style>
+    .simple-settings-card {
+        max-width: 350px;
+        margin: 40px auto;
+        padding: 20px 18px;
+        border: 1px solid #d0d0d0;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .simple-settings-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1976d2;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    .simple-settings-label {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .simple-settings-select {
+        width: 100%;
+        padding: 7px 10px;
+        border-radius: 5px;
+        border: 1px solid #b0b0b0;
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+</style>
+
+<div class="simple-settings-card">
+    <div class="simple-settings-title">Settings</div>
+    <label for="themeSelect" class="simple-settings-label">Select Theme:</label>
+    <select id="themeSelect" class="simple-settings-select" @onchange="OnThemeChanged">
+        <option value="theme-light">Light</option>
+        <option value="theme-dark">Dark</option>
+        <option value="theme-blue">Blue</option>
+        <option value="theme-green">Green</option>
+    </select>
+</div>
+
+
+@code {
+    private async Task OnThemeChanged(ChangeEventArgs e)
+    {
+        var theme = e.Value?.ToString() ?? "theme-light";
+        await ThemeService.SetThemeAsync(theme);
+    }
+}

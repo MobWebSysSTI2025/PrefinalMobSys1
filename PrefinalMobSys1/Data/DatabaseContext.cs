@@ -34,7 +34,7 @@ namespace PrefinalMobSys1.Data
             database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
             //Create tables
             await database.CreateTableAsync<User>();
-
+            await database.CreateTableAsync<TodoTask>();
         }
 
         public async Task<List<User>> Users()
@@ -56,6 +56,39 @@ namespace PrefinalMobSys1.Data
         {
             await Init();
             return await database.DeleteAsync(incoming);
+        }
+
+        public async Task<List<TodoTask>> GetTodoTasks()
+        {
+            await Init();
+            return await database.Table<TodoTask>().ToListAsync();
+        }
+
+        public async Task<int> SaveTodoTask(TodoTask task)
+        {
+            await Init();
+            if (task.Id != 0)
+                return await database.UpdateAsync(task);
+            else
+                return await database.InsertAsync(task);
+        }
+
+        public async Task<int> DeleteTodoTask(TodoTask task)
+        {
+            await Init();
+            return await database.DeleteAsync(task);
+        }
+
+        public async Task<int> UpdateTodoTask(TodoTask incoming)
+        {
+            await Init();
+            return await database.UpdateAsync(incoming);
+        }
+
+        public async Task DeleteAllTodoTasks()
+        {
+            await Init();
+            await database.DeleteAllAsync<TodoTask>();
         }
     }
 }

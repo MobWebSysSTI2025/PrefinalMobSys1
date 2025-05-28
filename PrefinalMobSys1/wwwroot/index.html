@@ -92,6 +92,12 @@
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script>
+        window.setTheme = function (theme) {
+            document.body.classList.remove('theme-light', 'theme-dark', 'theme-blue', 'theme-green');
+            document.body.classList.add(theme);
+        }
+    </script>
 
 </body>
 

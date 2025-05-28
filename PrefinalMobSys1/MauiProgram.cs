@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using PrefinalMobSys1.Data;
+using PrefinalMobSys1.Model; // Added for ThemeService
 
 namespace PrefinalMobSys1
 {
@@ -18,12 +19,14 @@ namespace PrefinalMobSys1
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
-    		builder.Logging.AddDebug();
+            builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<AppShellContext>();
             builder.Services.AddSingleton<DatabaseContext>();
+            builder.Services.AddScoped<ThemeService>(); // Register ThemeService
+
             return builder.Build();
         }
     }

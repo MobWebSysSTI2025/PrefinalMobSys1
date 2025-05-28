@@ -1,0 +1,65 @@
+﻿@page "/kanban"
+@using PrefinalMobSys1.Data
+
+<h2 class="kanban-title">Kanban Board</h2>
+<div class="kanban-board">
+    <div class="kanban-column">
+        <div class="kanban-column-header">To Do</div>
+        <div class="kanban-tasks">
+            @foreach (var task in TodoTasks)
+            {
+                if (!task.IsCompleted)
+                {
+                    <div class="kanban-task-card">
+                        <span>@task.Text</span>
+                        <button class="kanban-btn" @onclick="() => MoveToDone(task)">
+                            <i class="fa fa-check"></i> Done
+                        </button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="kanban-column">
+        <div class="kanban-column-header">Done</div>
+        <div class="kanban-tasks">
+            @foreach (var task in TodoTasks)
+            {
+                if (task.IsCompleted)
+                {
+                    <div class="kanban-task-card done">
+                        <span>@task.Text</span>
+                        <button class="kanban-btn" @onclick="() => MoveToTodo(task)">
+                            <i class="fa fa-undo"></i> To Do
+                        </button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] public DatabaseContext Db { get; set; }
+
+    private List<TodoTask> TodoTasks = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        TodoTasks = await Db.GetTodoTasks();
+    }
+
+    private async Task MoveToDone(TodoTask task)
+    {
+        task.IsCompleted = true;
+        await Db.SaveTodoTask(task);
+        StateHasChanged();
+    }
+
+    private async Task MoveToTodo(TodoTask task)
+    {
+        task.IsCompleted = false;
+        await Db.SaveTodoTask(task);
+        StateHasChanged();
+    }
+}
