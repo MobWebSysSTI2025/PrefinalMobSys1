@@ -15,7 +15,6 @@ namespace PrefinalMobSys1.Models
 		public int TodoID { get; set; }
 		[NotNull]
 		public string Title { get; set; }
-		[NotNull]
 		public string Description { get; set; }
 		public bool IsCompleted { get; set; }
 		public DateTime? DueDate { get; set; } = DateTime.Today;

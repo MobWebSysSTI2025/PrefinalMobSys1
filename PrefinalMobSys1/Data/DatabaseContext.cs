@@ -67,7 +67,7 @@ namespace PrefinalMobSys1.Data
 			return await database.Table<TodoItem>().ToListAsync();
 		}
 
-		public async Task<List<TodoItem>> GetItemsNotDoneAsync()
+		public async Task<List<TodoItem>> GetItemsDoneAsync()
 		{
 			await Init();
 			return await database.Table<TodoItem>().Where(t => t.IsCompleted).ToListAsync();

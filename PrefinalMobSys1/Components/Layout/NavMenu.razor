@@ -3,60 +3,63 @@
 @inject AppShellContext AppShell
 <style>
 </style>
-<nav class="mobile-nav" onclick="hideMenu()">
+<nav class="mobile-nav bg-light" onclick="hideMenu()">
     @if (AppShell.IsUserLoggedIn)
     {
         if (AppShell.CurrentUser!=null)
         {
-            <div class="userpane text-secondary display-6 my-2">
-                <i class="fas fa-user"></i>&nbsp;
-                Hi @AppShell.CurrentUser.Username
-                <a class="btn btn-danger" href="javascript:void(0)" style="float:right" @onclick="Logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
+            <div class="userpane text-secondary bg-info display-6 p-3">
+				<i class="fa fa-user-circle"></i>&nbsp;@AppShell.CurrentUser.FirstName @AppShell.CurrentUser.LastName
             </div>
         }
 
-		<ul class="text-primary">
-			<li>
+		<div class="text-dark">
+			<div class="p-3">
 				<a class="nav-link" href="">
-					<i class="fa fa-home"></i>&nbsp;Home
+					<i class="fa fa-calendar-check text-primary"></i>&nbsp;Todo List
 				</a>
-			</li>
-			<li>
+			</div>
+			<span class="border-bottom"></span>
+			<div class ="p-3">
 				<a class="nav-link" href="kanbanboard">
-					<i class="fa fa-clipboard"></i>&nbsp;Kanban Board
+					<i class="fa fa-table text-secondary"></i>&nbsp;Kanban Board
 				</a>
-			</li>
-		</ul>
+			</div>
+		</div>
     }
-  
-    <hr />
+	<hr />
     @if (AppShell.IsUserLoggedIn)
     {
-		<ul class="text-secondary">
+		<div class="text-dark">
             <!--Admin Pages Here-->
-            <li>
+			<div class="p-3">
                 <a class="nav-link" href="users">
-                    <i class="fa fa-users"></i>&nbsp;Users
+                    <i class="fa fa-users text-warning"></i>&nbsp;Users
                 </a>
-            </li>
-        </ul>
+            </div>
+			<span class="border-bottom"></span>
+			<div class="p-3">
+				<a class="nav-link" href="javascript:void(0)" @onclick="Logout">
+					<i class="fas fa-sign-out-alt text-danger"></i>&nbsp;Logout
+				</a>
+			</div>
+        </div>
     }
     else
     {
-		<ul class="text-secondary">
-            <li>
+		<div class="class="text-black"">
+            <div class="p-3">
                 <a class="nav-link" href="register">
-                    <i class="fa fa-list"></i>&nbsp;Register
+                    <i class="fa fa-list text-warning"></i>&nbsp;Register
                 </a>
-            </li>
-            <li>
+            </div>
+			<span class="border-bottom"></span>
+            <div class="p-3">
                 <a class="nav-link" href="login">
-                    <i class="fa fa-sign-in-alt"></i>&nbsp;Login
+                    <i class="fa fa-sign-in-alt text-info"></i>&nbsp;Login
                 </a>
-            </li>
-        </ul>
+            </div>
+        </div>
     }
 </nav>
 
