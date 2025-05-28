@@ -5,7 +5,22 @@
      
 </SectionContent>
 <section>
-    <h1>Hello, @AppShell.CurrentUser.FirstName @AppShell.CurrentUser.LastName</h1>
+    @if(AppShell.CurrentUser == null)
+    {
+        <div class="alert alert-warning">
+            <h3>Welcome to the Recipe App!</h3>
+            <p>Please <a href="/login">log in</a> to access your personalized content.</p>
+        </div>
+    }
+    else
+    {
+        if (AppShell.IsUserLoggedIn)
+        {
+            <div class="">
+                <h3>Welcome back, @AppShell.CurrentUser.FirstName @AppShell.CurrentUser.LastName!</h3>
+            </div>
+        }
+    }   
     <div class="search">
         <div id="searchBox" class="input-group header-search" style="">
             <span class="input-group-text text-warning"><i class="fa fa-search"></i></span>
