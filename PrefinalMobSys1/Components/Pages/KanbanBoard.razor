@@ -1,0 +1,44 @@
+﻿@page "/kanbanboard"
+@using PrefinalMobSys1.Data
+@using PrefinalMobSys1.Models
+@inject DatabaseContext DB
+
+<div class="container py-4">
+	<h1 class="mb-4 display-4 text-center">Kanban Board</h1>
+	<div class="row">
+		<!-- To Do Column -->
+		<div class="col-md-6 my-2">
+			<div class="card">
+				<div class="card-header bg-secondary text-white">
+					<h3 class="text-center">Not Started</h3>
+				</div>
+				<div>
+					@foreach(var item in TodoItems)
+					{
+						<div class="bg-light text-white m-4 p-2">
+							<input type="checkbox" class="form-check-input me-2" checked="@item.IsCompleted" @onchange="async () => { await ToggleCompletion(item); }"/>
+							<span class="lead">@item.Title</span>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+		<!-- Done Column -->
+		<div class="col-md-6 my-2">
+			<div class="card">
+				<div class="card-header bg-info text-white">
+					<h3 class="text-center">Done</h3>
+				</div>
+				<div>
+					@foreach (var item in CompletedTodoItems)
+					{
+						<div class="bg-light text-white m-4 p-2">
+							<input type="checkbox" class="form-check-input me-2" checked="@item.IsCompleted" @onchange="async () => { await ToggleCompletion(item); }"/>
+							<span class="lead">@item.Title</span>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,5 @@
 ﻿@page "/register"
-<h3>Register</h3>
+
 @if (!string.IsNullOrWhiteSpace(StatusMessage))
 {
     <div class="alert alert-@Status">
@@ -7,32 +7,39 @@
         @StatusMessage
     </div>
 }
-<table>
-    <tr>
-        <td><label>Username:</label></td>
-        <td><input type="text" @bind="Model.Username" /></td>
-    </tr>
-    <tr>
-        <td><label>Password:</label></td>
-        <td><input type="password" @bind="Model.Password" /></td>
-    </tr>
-    <tr>
-        <td><label>First Name:</label></td>
-        <td><input type="text" @bind="Model.FirstName" /></td>
-    </tr>
-    <tr>
-        <td><label>Last Name:</label></td>
-        <td><input type="text" @bind="Model.LastName" /></td>
-    </tr>
-    <tr>
-        <td><label>Mobile:</label></td>
-        <td><input type="text" @bind="Model.MobileNumber" /></td>
-    </tr>
-    <tr>
-        <td><label>Address:</label></td>
-        <td><textarea @bind="Model.Address"></textarea></td>
-    </tr>
-</table>
-<button @onclick="RegisterUser">
-    Save
-</button>
+<div class="card shadow-sm my-4">
+	<div class="card-header bg-secondary">
+		<h3>Register</h3>
+	</div>
+	<div class="card-body bg-white text-primary">
+		<div class="mb-3">
+			<label class="form-label">Username:</label>
+			<input class="form-control" type="text" @bind="Model.Username" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Password:</label>
+			<input class="form-control" type="password" @bind="Model.Password" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label">First Name:</label>
+			<input class="form-control" type="text" @bind="Model.FirstName" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Last Name:</label>
+			<input class="form-control" type="text" @bind="Model.LastName" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Mobile:</label>
+			<input class="form-control" type="text" @bind="Model.MobileNumber" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Address:</label>
+			<textarea class="form-control" @bind="Model.Address"></textarea>
+		</div>
+		<div class="card-footer mb-3 text-white">
+			<button class="btn btn-success w-100" @onclick="RegisterUser">
+				Save
+			</button>
+		</div>
+	</div>
+</div>

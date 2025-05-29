@@ -122,11 +122,11 @@ h1:focus {
     position: fixed;
     top: calc(10px + 60px);
     left: -100%;
-    width: 70vw;
+    width: 60vw;
     transition: left ease-in 0.1s;
     z-index: 103;
-    background-color: white;
     box-shadow: 0px 15px 15px #DDD;
+    border-radius: 10px;
     padding: 5px;
 }
 
@@ -138,24 +138,9 @@ h1:focus {
         font-size: 20px;
     }
 
-    .mobile-nav ul {
-        margin: 0px;
-        padding: 0px;
+    .mobile-nav div > div:hover {
+        background-color: #186c758a
     }
-
-        .mobile-nav ul li {
-            list-style: none;
-            margin: 2px;
-            padding: 8px 0px;
-        }
-
-            .mobile-nav ul li.active a, .mobile-nav ul li:active a {
-                color: green;
-            }
-
-            .mobile-nav ul li:hover {
-                background-color: #CCC;
-            }
 
 
 /*For Form Pages*/
@@ -221,49 +206,55 @@ fieldset {
     background-color: #FFF;
 }
 
-    pagepanelform input, pagepanelform button, pagepanelform label {
-        font-size: 21px !important;
-    }
+pagepanelform input, pagepanelform button, pagepanelform label {
+    font-size: 21px !important;
+}
 
 .itemsList {
     box-shadow: 0px 0px 10px #EEE;
     border-radius: 10px;
 }
 
-    .itemsList ul {
-        margin: 0px;
-        padding: 0px;
-    }
+.itemsList ul {
+    margin: 0px;
+    padding: 0px;
+}
 
-        .itemsList ul li {
-            list-style: none;
-            margin: 0px;
-            padding: 10px;
-            border: none;
-            border-bottom: 1px solid #CCC;
-        }
+.itemsList ul li {
+    list-style: none;
+    margin: 0px;
+    padding: 15px;
+    border: none;
+    border-bottom: 1px solid #CCC;
+}
 
-            .itemsList ul li:nth-child(even) {
-                background-color: #EEE;
-            }
+.itemsList ul li:nth-child(odd) {
+    background-color: rgb(27, 162, 246, 0.5);
+}
 
-            .itemsList ul li .leftindicator {
-                display: inline;
-                vertical-align: middle;
-                text-align: center;
-            }
+.itemsList ul li:nth-child(even) {
+    background-color: rgba(234, 57, 184, 0.5);
+}
 
-            .itemsList ul li .centerdetails {
-                display: inline-block;
-                width: calc(100% - 65px);
-                vertical-align: middle;
-            }
 
-            .itemsList ul li .rightaction {
-                display: inline;
-                vertical-align: middle;
-                text-align: right;
-            }
+
+.itemsList ul li .leftindicator {
+    display: inline;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.itemsList ul li .centerdetails {
+    display: inline-block;
+    width: calc(100% - 65px);
+    vertical-align: middle;
+}
+
+.itemsList ul li .rightaction {
+    display: inline;
+    vertical-align: middle;
+    text-align: right;
+}
 
 .form-buttons {
     margin-top: 10px;
@@ -286,38 +277,34 @@ fieldset {
     margin-top: 5px;
 }
 
-    .input-group.header-search span {
-        font-size: 25px !important;
-    }
+.input-group.header-search span {
+    font-size: 25px !important;
+}
 
-    .input-group.header-search input {
-        font-size: 16px !important;
-    }
+.input-group.header-search input {
+    font-size: 16px !important;
+}
 
-        .input-group.header-search input:focus {
-            outline: none;
-            box-shadow: none;
-            border: 1px solid #ced4da;
-        }
+.input-group.header-search input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+}
 
 
 article section:not(:first-child) {
     margin-top: 20px;
 }
 
-.smallmenulist {
+
+.smallmenulist button,.smallmenulist a {
+    /*border:1px solid #CCC;*/
+    font-size: 25px;
+    box-shadow: 0px 0px 10px #EEE;
+    border-radius: 100px;
+    margin: 0px 3px;
 }
 
-    .smallmenulist button,.smallmenulist a {
-        /*border:1px solid #CCC;*/
-        font-size: 25px;
-        box-shadow: 0px 0px 10px #EEE;
-        border-radius: 100px;
-        margin: 0px 3px;
-    }
-
-        .smallmenulist button i {
-        }
 
 .portrait-menulist {
     margin: 0px auto;
@@ -528,4 +515,24 @@ article section:not(:first-child) {
     margin:5px;
     border:none;
     /*box-shadow:0px 0px 8px #CCC;*/
+}
+
+/* floating button */
+.floating-btn {
+    position: fixed;
+    top: 120px;
+    right: 40px;
+    z-index: 1050;
+    font-size: 20px;
+}
+
+/*checkbox*/
+.checkbox-btn {
+    width: 20px;
+    height: 20px;
+}
+
+/* delete */
+.editDel-btn {
+    width: 40px;
 }

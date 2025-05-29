@@ -8,17 +8,26 @@
                 @StatusMessage
             </div>
         }
-        <fieldset>
-            <legend>Username:</legend>
-            <input class="form-control" type="text" @bind="Model.Username" placeholder="Username" title="Username" />
-        </fieldset>
-        <fieldset>
-            <legend>Password:</legend>
-            <input type="password" @bind="Model.Password" placeholder="Password" title="Password" class="form-control ">
-        </fieldset>
-        <button type="submit" class="btn btn-warning scaledbutton">
-            <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
-        </button>
+
+		<div class="card-header bg-info">
+			<h3>Login</h3>
+		</div>
+		<div class="card-body bg-white text-primary">
+			<div class="p-2 my-2">
+				<label>Username</label>
+				<input class="form-control" type="text" @bind="Model.Username" title="Username" />
+			</div>
+			<div class="p-2 my-2">
+				<label>Password</label>
+				<input class="form-control" type="password" @bind="Model.Password" title="Password">
+			</div>
+			<div class="card-footer text-white">
+				<button type="submit" class="btn btn-success w-100 my-3">
+					<i class="fas fa-sign-in-alt"></i>&nbsp;Log In
+				</button>
+			</div>
+		</div>
+       
     </div>
 </form>
 
