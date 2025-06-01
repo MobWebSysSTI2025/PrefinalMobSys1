@@ -8,19 +8,25 @@
                 @StatusMessage
             </div>
         }
-        <fieldset>
+        <fieldset class="fsetLogin ">
             <legend>Username:</legend>
             <input class="form-control" type="text" @bind="Model.Username" placeholder="Username" title="Username" />
         </fieldset>
-        <fieldset>
+        <fieldset class="fsetLogin ">
             <legend>Password:</legend>
             <input type="password" @bind="Model.Password" placeholder="Password" title="Password" class="form-control ">
         </fieldset>
-        <button type="submit" class="btn btn-warning scaledbutton">
+        <button type="submit" style="background-color: skyblue; box-shadow:0px 6px 10px black;" class="btn btn-warning scaledbutton">
             <i class="fas fa-sign-in-alt"></i>&nbsp;Log In
         </button>
     </div>
 </form>
+
+
+
+
+
+
 
 <script>
     $(function(){

@@ -116,6 +116,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Components\Pages\Seafood\" />
       <Folder Include="Components\Shared\" />
       <Folder Include="wwwroot\imgs\ads\" />
     </ItemGroup>

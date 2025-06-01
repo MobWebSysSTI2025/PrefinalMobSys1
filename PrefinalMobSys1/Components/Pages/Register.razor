@@ -7,6 +7,47 @@
         @StatusMessage
     </div>
 }
+
+
+<!-- Replacing from table to fieldset input-->
+<div>
+
+    <fieldset class="fsetRegister ">
+        <legend>Username:</legend>
+        <input class="form-control" type="text" @bind="Model.Username" placeholder="Username" title="Username" />
+    </fieldset>
+    <fieldset class="fsetRegister ">
+        <legend>Password:</legend>
+        <input type="password" @bind="Model.Password" placeholder="Password" title="Password" class="form-control ">
+    </fieldset>
+    <fieldset class="fsetRegister ">
+        <legend>First Name:</legend>
+        <input class="form-control" type="text" @bind="Model.FirstName" placeholder="First Name" title="First Name" />
+    </fieldset>
+    <fieldset class="fsetRegister ">
+        <legend>Last Name:</legend>
+        <input class="form-control" type="text" @bind="Model.LastName" placeholder="Last Name" title="Last Name" />
+    </fieldset>
+    <fieldset class="fsetRegister ">
+        <legend>Mobile:</legend>
+        <input class="form-control" type="text" @bind="Model.MobileNumber" placeholder="Mobile Number" title="Mobile Number " />
+    </fieldset>
+    <fieldset class="fsetRegister ">
+        <legend>Address:</legend>
+        <input class="form-control" type="text" @bind="Model.Address" placeholder="Address" title="Address" />
+    </fieldset>
+
+
+   
+
+
+</div>
+
+
+
+
+
+ @* 
 <table>
     <tr>
         <td><label>Username:</label></td>
@@ -32,7 +73,34 @@
         <td><label>Address:</label></td>
         <td><textarea @bind="Model.Address"></textarea></td>
     </tr>
-</table>
-<button @onclick="RegisterUser">
+</table> *@
+
+
+<button class="buttonSave " @onclick="RegisterUser">
     Save
 </button>
+
+
+
+        <style>
+    .fsetRegister{
+        margin-bottom: 20px;
+
+    }
+
+    .buttonSave {
+        background-color: deepskyblue;
+        border-color:deepskyblue;
+        color:black;
+        font-weight:bold;
+	width:170px;
+    height:30px;
+
+    }
+
+        .buttonSave:hover {
+            box-shadow: 0px 6px 10px black;
+
+    }
+        
+        </style>

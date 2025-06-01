@@ -1,9 +1,11 @@
 ﻿@page "/"
+
+
 <SectionContent SectionName="page-buttons">    
      
 </SectionContent>
 <section>
-    <h1>Hello, Michelle</h1>
+    <h1 style="font-weight:bold; color: lawngreen; text-shadow:0px 3px 5px black; text-align: center;">Recipe Book</h1>
     <div class="search">
         <div id="searchBox" class="input-group header-search" style="">
             <span class="input-group-text text-warning"><i class="fa fa-search"></i></span>
@@ -11,22 +13,26 @@
         </div>
     </div>
 
+    <!-- Adding class for each link pages -->
     <div class="grouping-menu">
-        <a href="/catalog?category=homemade" style="background-image:url('/imgs/groups/homemade.png')">
+        <a class="recipe " href="Homemade_Recipe" style="background-image:url('/imgs/groups/homemade.png')">
             <span>Homemade Cuisine</span>
         </a>
-        <a href="/catalog?category=vegie" style="background-image:url('/imgs/groups/vegetarian.png')">
-            <span>Vegietarian</span>
+        <a class ="recipe " href="Vegetable_Recipes" style="background-image:url('/imgs/groups/vegetarian.png')">
+            <span>Vegetables</span>
         </a>
-        <a href="/catalog?category=meat" style="background-image:url('/imgs/groups/meat.png')">
-            <span>All Meat</span>
+        <a class="recipe " href="Meat_Recipe" style="background-image:url('/imgs/groups/meat.png')">
+            <span>Meat</span>
         </a>
-        <a href="/catalog?category=seafood" style="background-image:url('/imgs/groups/seafood.png')">
+
+     @*    <a class="recipe " href="/catalog?category=seafood" style="background-image:url('/imgs/groups/seafood.png')">
             <span>Seafood</span>
-        </a>
-        <a href="/catalog?category=soup" style="background-image:url('/imgs/groups/soup.png')">
+        </a> *@
+
+       @*  <a class="recipe " href="/catalog?category=soup" style="background-image:url('/imgs/groups/soup.png')">
             <span>Soups</span>
-        </a>
+        </a> *@
+
     </div> 
 </section>
 <section>
@@ -54,3 +60,15 @@
 
 
 </script>
+
+
+
+
+        <style>
+
+            
+            .recipe:hover{
+            
+            box-shadow:0px 6px 10px black;
+            }
+        </style>
