@@ -1,8 +1,82 @@
 ﻿@page "/Ginisang_Broccoli"
 
 
-<h3>Ginisang_Broccoli</h3>
+    <a href="Homemade_Recipe ">
+    <button class="btnback "> Back </button>
+    </a>
 
-@code {
 
-}
+<h1 style="font-weight:bold; margin-bottom:30px; color: Blue; text-shadow:0px 3px 5px black; text-align: center;"> Ginisang Broccoli </h1>
+
+
+<!-- Whole div container-->
+<div class="container ">
+   
+    <!-- Time in minutes   -->
+    <div class="preptime">
+    <fieldset>
+                <legend>Prep Time in Minutes </legend>
+                <select class="form-control" title="Category">
+                    <option>-Select time in Minutes-</option>
+                    <option>15 minutes</option>
+                    <option>20 minutes</option>
+                    <option>25 minutes</option>
+                    <option>30 minutes</option>
+                </select>
+    </fieldset>
+
+    </div>
+
+    <!-- Ingredients lists-->
+    <div class="ingredientlists ">
+        <h2 style="text-align: center; ">Ingredients:</h2>
+       
+        <p> * Spices: Onions and garlic</p>
+        <p> * Vegetables: Broccoli, mushrooms (<span style="color:green; ">jolly whole mushroom pack</span>), carrots and cabbage. </p>
+        <p> * Sauce: Oyster sauce </p>
+        
+    </div>
+
+</div>
+
+
+<style>
+
+    /*  div container design */
+    .container {
+        display: grid;
+        grid-template-areas:
+            "preptime preptime"
+            "ingredientlists ingredientlists";
+      
+        gap: 5px;
+        background-color: #2196F3;
+        padding: 5px;
+    }
+
+        .container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+            .container > div.preptime {
+                grid-area: preptime;
+            }
+
+            .container > div.ingredientlists {
+                grid-area: ingredientlists;
+            }
+
+    /*   back button  design */
+    .btnback {
+        background-color: gray;
+        border: 10px;
+        border-color: black;
+        width: 100px;
+        height: 35px;
+    }
+
+        .btnback:hover {
+            background-color: deepskyblue;
+        }
+</style>

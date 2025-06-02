@@ -1,7 +1,103 @@
 ﻿@page "/Pinakbet_Recipe"
 
-<h3>Pinakbet_Recipe</h3>
+<a href="Vegetable_Recipes ">
+    <button class="btnback "> Back </button>
+</a>
 
-@code {
+<h1 style="font-weight:bold; margin-bottom:30px; color: lawngreen; text-shadow:0px 3px 5px black; text-align: center;"> Pinakbet  </h1>
+<img src="https://www.seriouseats.com/thmb/BHTueEcNShZmWVlwc4_VVmhfLYs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20210712-pinakbet-vicky-wasik-seriouseats-12-37ac6b9ea57145728de86f927dc5fef6.jpg " />
 
-}
+
+
+
+
+
+
+<div class="container ">
+
+   
+    <div class="preptime">
+        <fieldset>
+            <legend>Prep Time in Minutes </legend>
+            <select class="form-control" title="Category">
+                <option>-Select time in Minutes-</option>
+                <option>20 minutes</option>
+                <option>35 minutes</option>
+                <option>40 minutes</option>
+
+            </select>
+        </fieldset>
+    </div>
+
+
+  
+    <div class="ingredientlists ">
+        <h1 style="text-align: center; ">Ingredients:</h1>
+
+        <h2> Vegetables: </h2>
+        <p> * Squash </p>
+        <p> * String beans</p>
+        <p> * Okra</p>
+        <p> * Eggplant </p>
+        <p> * Garlic</p>
+        <p> * Onion.</p>
+        <p> * Ginger </p>
+        <p> * Tomato </p>
+        <p style="margin-bottom: 30px; "> * Bitter melon (ampalaya) </p>
+
+        <h2 > Meat: </h2>
+        <p> * Pork Belly.</p>
+        <p> * Ginger </p>
+
+
+    </div>
+
+</div>
+<p></p>
+
+
+
+
+<style>
+    .container {
+        display: grid;
+        grid-template-areas:
+            "preptime preptime"
+            "ingredientlists ingredientlists";
+        /*      grid-template-columns: 3fr 1fr; */
+
+
+        gap: 5px;
+        background-color: lawngreen;
+        padding: 5px;
+    }
+
+        .container > div {
+            background-color: green(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+            .container > div.preptime {
+                grid-area: preptime;
+            }
+
+            .container > div.ingredientlists {
+                grid-area: ingredientlists;
+            }
+
+            .ingredientlists{
+                color:black;
+            }
+
+    .btnback {
+        background-color: gray;
+        border: 10px;
+        border-color: black;
+        width: 100px;
+        height: 35px;
+    }
+
+        .btnback:hover {
+            background-color: lawngreen;
+        }
+</style>

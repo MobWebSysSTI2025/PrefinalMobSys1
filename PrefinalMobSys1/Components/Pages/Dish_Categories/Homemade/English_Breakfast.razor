@@ -1,27 +1,50 @@
 ﻿@page "/English_Breakfast"
 
-<h3>English_Breakfast</h3>
 
-<div class="container "></div>
+<a href="Homemade_Recipe ">
+    <button class="btnback "> Back </button>
+</a>
 
-<h1></h1>
+<h1 style="font-weight:bold; margin-bottom:30px; color: Blue; text-shadow:0px 3px 5px black; text-align: center;"> Homemade Breakfast </h1>
+
+<img src="https://www.allrecipes.com/thmb/26c7pMfdcJyCH3rCR-3wNMvsXHI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8739702_Full-English-Breakfast_Dotdash-Meredith-Food-Studios_4x3-69803e0fd92c411f98991dd4bcf34f44.jpg " style=" width:500px; height:200px; position: center; margin-bottom:30px;" />
 
 
-@* @bind="Model.SelectedDispatch.Progress"  *@ 
-@* 
-  <fieldset>
+
+
+
+ <!-- container   -->
+<div class="container ">
+
+    <!-- Time in minutes   -->
+<div class="preptime">   
+             <fieldset >
                 <legend>Prep Time in Minutes </legend>
                 <select class="form-control" title="Category">
-                    <option>-Select tinme in Minutes-</option>
+                    <option>-Select time in Minutes-</option>
                     <option>20 minutes</option>
                     <option>30 minutes</option>
                     <option>40 minutes</option>
-                    <option>50 minutes</option>
+                    
                 </select>
             </fieldset>
- *@
+</div>
 
 
+    <!-- Ingredients lists   -->
+    <div class="ingredientlists "> 
+        <h2 style="text-align: center; ">Ingredients:</h2>
+        <p> * Meats: Bacon (<span style="color: green;">often back bacon</span>), sausages (<span style="color:green; ">pork or vegetarian options</span>), black pudding.     </p>
+        <p> * Eggs: Fried, poached, or scrambled eggs are a staple.</p>
+        <p> * Vegetables: Tomatoes (<span style="color: green; ">grilled or fried</span>), mushrooms (<span style="color: green; ">fried or grilled</span>). </p>
+        <p> * Rice</p>
+        <p> * Baked beans (<span style="color: green; ">often in a tomato-based sauce</span>), toast or fried bread.</p>
+        <p> * Beverages: Coffee, tea, or fruit juice are common accompaniments.</p>
+
+
+    </div>
+
+</div>
 
 
 
@@ -30,9 +53,40 @@
 <style>
 	.container{
 		display:grid;
-		grid-template-areas: "" ;
-		
+        grid-template-areas: 
+        "preptime preptime"
+            "ingredientlists ingredientlists";
 
-	}
+   /*      grid-template-columns: 3fr 1fr; */
+        gap: 5px;
+        background-color: #2196F3;
+        padding: 5px;
+    }
 
-</style>
+        .container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+            .container > div.preptime {
+                grid-area: preptime;
+            }
+
+            .container > div.ingredientlists {
+                grid-area: ingredientlists;
+            }
+
+
+    .btnback {
+        background-color: gray;
+        border: 10px;
+        border-color: black;
+        width: 100px;
+        height: 35px;
+    }
+
+        .btnback:hover {
+            background-color: deepskyblue;
+        } 
+
+    </style>

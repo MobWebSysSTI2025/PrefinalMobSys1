@@ -1,10 +1,94 @@
 ﻿@page "/Ginataang_Kalabasa"
-<h3>Ginataang_Kalabasa</h3>
+
+<a href="Vegetable_Recipes ">
+    <button class="btnback "> Back </button>
+</a>
+
+<h1 style="font-weight:bold; margin-bottom:30px; color: lawngreen; text-shadow:0px 3px 5px black; text-align: center;"> Ginataang Kalabasa  </h1>
+<img src="https://deliciouslyrushed.com/wp-content/uploads/2024/01/long-beans-and-kabocha-in-coconut-cream.jpg" />
 
 
 
 
 
-@code {
 
-}
+<!-- container   -->
+<div class="container ">
+
+    <!-- Time in minutes   -->
+    <div class="preptime">
+        <fieldset>
+            <legend>Prep Time in Minutes </legend>
+            <select class="form-control" title="Category">
+                <option>-Select time in Minutes-</option>
+                <option>20 minutes</option>
+                <option>35 minutes</option>
+                <option>40 minutes</option>
+
+            </select>
+        </fieldset>
+    </div>
+
+
+    <!-- Ingredients lists   -->
+    <div class="ingredientlists ">
+        <h2 style="text-align: center; ">Ingredients:</h2>
+        <p> * Butternut squash (kalabasa). </p>
+        <p> * String beans</p>
+        <p> * Coconut milk </p>
+        <p> * Garlic</p>
+        <p> * Onion.</p>
+        <p> * Ginger </p>
+
+
+
+
+    </div>
+
+</div>
+<p></p>
+
+
+
+
+<style>
+    .container {
+        display: grid;
+        grid-template-areas:
+            "preptime preptime"
+            "ingredientlists ingredientlists";
+        /*      grid-template-columns: 3fr 1fr; */
+        gap: 5px;
+        background-color: lawngreen;
+        padding: 5px;
+    }
+
+        .container > div {
+            background-color: green(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+            .container > div.preptime {
+                grid-area: preptime;
+            }
+
+            .container > div.ingredientlists {
+                grid-area: ingredientlists;
+            }
+
+    .ingredientlists {
+        color: black;
+    }
+
+    .btnback {
+        background-color: gray;
+        border: 10px;
+        border-color: black;
+        width: 100px;
+        height: 35px;
+    }
+
+        .btnback:hover {
+            background-color: lawngreen;
+        }
+</style>

@@ -3,11 +3,9 @@
    <!-- This is my homemade recipe -->
 
 <div>
-	<button class="btn text-warning" onclick="history.back()">
-		<svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-			<path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
-		</svg>  <!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
-	</button>
+	<a href="">
+		<button class="btnHome "> Back </button>
+	</a>
 
 	<h1 style="font-weight:bold; margin-bottom:30px; color: Blue; text-shadow:0px 3px 5px black; text-align: center;">Homemade Recipe</h1>
 </div>
@@ -16,12 +14,12 @@
 
 <div class="hmadefoodlists">
 
-	<a href="English_Breakfast" class="hmadefoods pakbet" style=" background-image:url('https://www.allrecipes.com/thmb/26c7pMfdcJyCH3rCR-3wNMvsXHI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8739702_Full-English-Breakfast_Dotdash-Meredith-Food-Studios_4x3-69803e0fd92c411f98991dd4bcf34f44.jpg')">
+	<a href="English_Breakfast" class="hmadefoods" style=" background-image:url('https://www.allrecipes.com/thmb/26c7pMfdcJyCH3rCR-3wNMvsXHI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8739702_Full-English-Breakfast_Dotdash-Meredith-Food-Studios_4x3-69803e0fd92c411f98991dd4bcf34f44.jpg')">
 		<span> English Breakfast </span>
 	</a>
 
 
-	<a href="Ginisang_Broccoli" class="hmadefoods ginisakalabasa" style="background-image:url('https://deliciouslyrushed.com/wp-content/uploads/2024/01/long-beans-and-kabocha-in-coconut-cream.jpg') ">
+	<a href="Ginisang_Broccoli" class="hmadefoods" style="background-image:url('https://deliciouslyrushed.com/wp-content/uploads/2024/01/long-beans-and-kabocha-in-coconut-cream.jpg') ">
 		<span> Ginisang Broccoli </span>
 
 
@@ -61,5 +59,18 @@ box-shadow:0px 5px 8px black;
 		grid-template-areas: "pakbet ginisakalabasa";
 
 	}
+
+
+	.btnHome {
+		background-color: gray;
+		border: 10px;
+		border-color: black;
+		width: 100px;
+		height: 35px;
+	}
+
+		.btnHome:hover {
+			background-color: deepskyblue;
+		}
 
 </style>

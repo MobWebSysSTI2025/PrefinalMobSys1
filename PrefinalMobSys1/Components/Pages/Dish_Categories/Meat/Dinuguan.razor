@@ -1,5 +1,91 @@
-﻿<h3>Dinuguan</h3>
+﻿@page "/Dinuguan"
 
-@code {
+<a href="Meat_Recipe ">
+    <button class="btnback "> Back </button>
+</a>
 
-}
+<h1 style="font-weight:bold; margin-bottom:30px; color: brown; text-shadow:0px 3px 5px black; text-align: center;"> Dinuguan </h1>
+<img src="https://images.yummy.ph/yummy/uploads/2018/01/dinuguan-1.jpg" />
+
+
+
+
+
+
+<!-- container   -->
+<div class="container ">
+
+    <!-- Time in minutes   -->
+    <div class="preptime">
+        <fieldset>
+            <legend>Prep Time in Minutes </legend>
+            <select class="form-control" title="Category">
+                <option>-Select time in Minutes-</option>
+                <option>20 minutes</option>
+                <option>30 minutes</option>
+                <option>40 minutes</option>
+
+            </select>
+        </fieldset>
+    </div>
+
+
+    <!-- Ingredients lists   -->
+    <div class="ingredientlists ">
+        <h2 style="text-align: center; ">Ingredients:</h2>
+        <p> * Chicken (<span style="color: green;">thighs or legs</span>).     </p>
+        <p> * Soy sauce</p>
+        <p> * Vinegar </p>
+        <p> * Garlic</p>
+        <p> * Bay leaves.</p>
+        <p> * Black peppercorns </p>
+        <p> * Sugar </p>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<style>
+    .container {
+        display: grid;
+        grid-template-areas:
+            "preptime preptime"
+            "ingredientlists ingredientlists";
+        /*      grid-template-columns: 3fr 1fr; */
+        gap: 5px;
+        background-color: orange;
+        padding: 5px;
+    }
+
+        .container > div {
+            background-color: #C4A484(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+            .container > div.preptime {
+                grid-area: preptime;
+            }
+
+            .container > div.ingredientlists {
+                grid-area: ingredientlists;
+            }
+
+
+    .btnback {
+        background-color: gray;
+        border: 10px;
+        border-color: black;
+        width: 100px;
+        height: 35px;
+    }
+
+        .btnback:hover {
+            background-color: sandybrown
+        }
+</style>
